@@ -1,0 +1,50 @@
+@import "../../../lib/bootstrap/custom.bootstrap.import.less";
+
+.schedule {
+
+}
+
+.cleaner-box {
+  border-radius: @border-radius-base;
+  border: 1px dotted @btn-default-border;
+  padding: 5px 10px;
+  margin-bottom: 4px;
+
+  display: flex;
+  align-items: center;
+
+  .name {
+    width: 100px;
+
+    &::before {
+      font-family: FontAwesome;
+      content: "\f142";
+      padding-right: 5px;
+    }
+  }
+
+  .buildings {
+    flex: 1 1 auto;
+  }
+}
+
+
+.building-box {
+  display: inline-block;
+  border-radius: @border-radius-base;
+  border: 1px solid @btn-default-border;
+  cursor: move;
+
+  padding: 0 3px;
+  margin: 3px;
+
+  .duration {
+    color: #aaa
+  }
+
+  &:hover {
+    background-color: darken(@btn-default-bg, 10);
+    border-color: darken(@btn-default-border, 15);
+  }
+}
+
