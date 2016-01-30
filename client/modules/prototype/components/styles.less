@@ -1,8 +1,5 @@
 @import "../../../lib/bootstrap/custom.bootstrap.import.less";
-
-.schedule {
-
-}
+@import "../../../lib/theme.less";
 
 .cleaner-box {
   border-radius: @border-radius-base;
@@ -10,11 +7,7 @@
   padding: 5px 10px;
   margin-bottom: 4px;
 
-  display: flex;
-  align-items: center;
-
   .name {
-    width: 100px;
 
     &::before {
       font-family: FontAwesome;
@@ -24,7 +17,6 @@
   }
 
   .buildings {
-    flex: 1 1 auto;
   }
 }
 
@@ -39,12 +31,22 @@
   margin: 3px;
 
   .duration {
-    color: #aaa
+    color: @color-soft;
   }
 
   &:hover {
     background-color: darken(@btn-default-bg, 10);
     border-color: darken(@btn-default-border, 15);
   }
+}
+
+.schedule {
+
+  .unassigned-buildings {
+    .building-box {
+      display: table;
+    }
+  }
+
 }
 
