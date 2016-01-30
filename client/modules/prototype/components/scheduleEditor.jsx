@@ -1,38 +1,71 @@
 import React from 'react';
 
+import CleanerBox from './cleanerBox.jsx';
+
 const ScheduleEditor = () => {
+
+  const cleaners = [
+    {
+      cleaner: {name: 'Hanka S.'},
+      buildings: [
+        {name: 'Dlha 2', duration: '4:30'},
+        {name: 'Mlinska d. 5', duration: '2:10'},
+        {name: 'Hradna 134', duration: '0:45'}
+      ]
+    },
+
+    {
+      cleaner: {name: 'Magda V.'},
+      buildings: [
+        {name: 'Hlavna 42', duration: '7:30'}
+      ]
+    },
+
+    {
+      cleaner: {name: 'Eva P.'},
+      buildings: []
+    }
+
+  ];
+
+
   return <div className="schedule schedule-editor">
-    <h1 className="text-center">Pondelok</h1>
 
     <div className="row">
-      <div className="col-xs-6 col-sm-9">
-        <div className="cleaner-box">
-          <div className="name">Helena F.</div>
-          <div className="buildings">
-            <div className="building-box">L. Stura 8 <span className="duration">(2:00)</span></div>
-            <div className="building-box">Hradna 12 <span className="duration">(1:20)</span></div>
-            <div className="building-box">Pod kopcom 84 <span className="duration">(2:45)</span></div>
-          </div>
-        </div>
-
-        <div className="cleaner-box">
-          <div className="name">Magda H.</div>
-          <div className="buildings">
-            <div className="building-box">Dlha 2 <span className="duration">(4:30)</span></div>
-            <div className="building-box">Kosicka 14 <span className="duration">(2:20)</span></div>
-          </div>
-        </div>
-
-        <div className="cleaner-box">
-          <div className="name">Eva T.</div>
-          <div className="buildings">
-            <span className="italic color-soft">takto si nic nezarobi</span>
-          </div>
-        </div>
+      <div className="col-xs-6 col-sm-8">
+        <h1 className="text-center">Pondelok</h1>
+        {cleaners.map((item, index) => {
+          return <CleanerBox key={index} {...item} />
+        })}
       </div>
 
-      <div className="col-xs-6 col-sm-3 unassigned-buildings">
+      <div className="col-xs-6 col-sm-4 unassigned-buildings">
+        <div className="gradient" />
         <div className="building-box">Hradna 9 <span className="duration">(0:30)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
+        <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
         <div className="building-box">Puskinova 13 <span className="duration">(2:00)</span></div>
       </div>
     </div>

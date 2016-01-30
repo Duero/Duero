@@ -8,15 +8,7 @@
   margin-bottom: 4px;
 
   .name {
-
-    &::before {
-      font-family: FontAwesome;
-      content: "\f142";
-      padding-right: 5px;
-    }
-  }
-
-  .buildings {
+    font-weight: bold;
   }
 }
 
@@ -25,28 +17,61 @@
   display: inline-block;
   border-radius: @border-radius-base;
   border: 1px solid @btn-default-border;
-  cursor: move;
 
-  padding: 0 3px;
+  padding: 5px 8px;
   margin: 3px;
 
   .duration {
     color: @color-soft;
   }
 
-  &:hover {
-    background-color: darken(@btn-default-bg, 10);
-    border-color: darken(@btn-default-border, 15);
+  &.delayed {
+    border-color: @btn-danger-border;
+    box-shadow: 0 1px 3px rgba(212, 63, 58, 0.12), 0 1px 2px rgba(212, 63, 58, 0.24);
+  }
+
+  &.reassigned {
+    border-color: @btn-warning-border;
+    box-shadow: 0 1px 3px rgba(238, 162, 54, 0.12), 0 1px 2px rgba(238, 162, 54, 0.24);
   }
 }
 
 .schedule {
 
+  .action-button {
+    width: 6rem;
+  }
+
+}
+
+.schedule-edit {
+
+  .building-box {
+    cursor: move;
+  }
+
   .unassigned-buildings {
+    position: fixed;
+    overflow: scroll;
+    height: 100%;
+    right: 0;
+
+    .gradient {
+      height: 40px;
+      width: 100%;
+      position: fixed;
+      bottom: 0;
+
+      background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+      background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+      background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 );
+    }
+
     .building-box {
       display: table;
     }
   }
 
-}
 
+}
