@@ -1,6 +1,5 @@
 import React from 'react';
 
-import CleanerBox from './cleanerBox.jsx';
 
 const Schedule = () => {
 
