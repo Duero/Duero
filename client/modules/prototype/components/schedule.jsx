@@ -38,7 +38,7 @@ const Schedule = () => {
         <div className="building-box">
           <div className="text-center m-b-sm">Dlha 2 <span className="duration">(4:30)</span></div>
           <div>
-            <div className="btn btn-success btn-sm action-button"><i className="fa fa-check" /></div>
+            <div className="btn btn-success  btn-inverted btn-sm action-button"><i className="fa fa-check" /></div>
             <span className="dropdown m-l-sm">
               <button className="btn btn-default btn-sm action-button dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
                 <span className="caret" />
@@ -55,7 +55,7 @@ const Schedule = () => {
         <div className="building-box delayed">
           <div className="text-center m-b-sm">Dlha 2 <span className="duration">(4:30)</span></div>
           <div>
-            <div className="btn btn-success btn-sm action-button"><i className="fa fa-check" /></div>
+            <div className="btn btn-success  btn-inverted btn-sm action-button"><i className="fa fa-check" /></div>
             <span className="dropdown m-l-sm">
               <button className="btn btn-default btn-sm action-button dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
                 <span className="caret" />
@@ -72,7 +72,24 @@ const Schedule = () => {
         <div className="building-box reassigned">
           <div className="text-center m-b-sm">Dlha 2 <span className="duration">(4:30)</span></div>
           <div>
-            <div className="btn btn-success btn-sm action-button"><i className="fa fa-check" /></div>
+            <div className="btn btn-success  btn-inverted btn-sm action-button"><i className="fa fa-check" /></div>
+            <span className="dropdown m-l-sm">
+              <button className="btn btn-default btn-sm action-button dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                <span className="caret" />
+              </button>
+              <ul className="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </span>
+          </div>
+        </div>
+        <div className="building-box completed">
+          <div className="text-center m-b-sm">Dlha 2 <span className="duration">(4:30)</span></div>
+          <div>
+            <div className="btn btn-danger btn-inverted btn-sm action-button"><i className="fa fa-times" /></div>
             <span className="dropdown m-l-sm">
               <button className="btn btn-default btn-sm action-button dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
                 <span className="caret" />

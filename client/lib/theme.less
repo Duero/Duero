@@ -1,5 +1,139 @@
+@import "bootstrap/custom.bootstrap.import.less";
+
 @color-soft: #aaa;
 
 .color-soft {
   color: @color-soft;
+}
+
+
+
+
+
+// F O R M S
+.form-control {
+  height: auto;
+  outline: 0;
+  -webkit-appearance: none;
+  tap-highlight-color: rgba(255, 255, 255, 0);
+  line-height: 1.2142em;
+  //padding: 0.578614em 0.8em;
+  font-size: 1em;
+  background: #fff;
+  border: 1px solid rgba(34, 36, 38, .15);
+  color: rgba(0, 0, 0, .87);
+  border-radius: .28571429rem;
+  box-shadow: 0 0 0 0 transparent inset;
+  -webkit-transition: color .1s ease, border-color .1s ease;
+  transition: color .1s ease, border-color .1s ease;
+
+  &:focus {
+    color: rgba(0, 0, 0, .95);
+    border-color: #85b7d9;
+    box-shadow: 0 0 0 0 rgba(34, 36, 38, .35) inset;
+  }
+}
+
+.input-group-addon {
+  background-color: #FAFAFA;
+  border: 1px solid #DEDEDE;
+}
+
+.form-control-feedback {
+  line-height: 39px;
+}
+
+// B U T T O N S
+
+.button-inverted-variant(@color; @background; @border) {
+  color: @border;
+  &:hover, &:focus {
+    background-color: @border;
+    color: @color;
+  }
+}
+
+.btn-inverted {
+  background-color: transparent;
+
+  &:hover, &:focus {
+    background-color: transparent;
+  }
+
+  &.btn-default {
+    .button-inverted-variant(@btn-default-color; @btn-default-bg; @btn-default-border);
+    color: @btn-default-color;
+  }
+  &.btn-primary {
+    .button-inverted-variant(@btn-primary-color; @btn-primary-bg; @btn-primary-border);
+  }
+  // Success appears as green
+  &.btn-success {
+    .button-inverted-variant(@btn-success-color; @btn-success-bg; @btn-success-border);
+  }
+  // Info appears as blue-green
+  &.btn-info {
+    .button-inverted-variant(@btn-info-color; @btn-info-bg; @btn-info-border);
+  }
+  // Warning appears as orange
+  &.btn-warning {
+    .button-inverted-variant(@btn-warning-color; @btn-warning-bg; @btn-warning-border);
+  }
+  // Danger and error appear as red
+  &.btn-danger {
+    .button-inverted-variant(@btn-danger-color; @btn-danger-bg; @btn-danger-border);
+  }
+}
+
+.button-soft-variant(@color; @background; @border) {
+  color: lighten(@border, 13);
+  background-color: transparent;
+  border: none;
+  &:hover, &:focus {
+    color: @border;
+    background-color: @background;
+  }
+}
+
+.btn-soft {
+  &.btn-default {
+    .button-soft-variant(@btn-default-color; lighten(@btn-default-bg, 40); @btn-default-border);
+    color: @btn-default-color;
+    &:hover, &:focus {
+      background-color: #eee;
+    }
+  }
+
+  &.btn-primary {
+    .button-soft-variant(@btn-primary-color; lighten(@btn-primary-bg, 50); @btn-primary-border);
+  }
+
+  &.btn-success {
+    .button-soft-variant(@btn-success-color; lighten(@btn-success-bg, 40); @btn-success-border);
+  }
+
+  &.btn-info {
+    .button-soft-variant(@btn-info-color; lighten(@btn-info-bg, 35); @btn-info-border);
+  }
+
+  &.btn-warning {
+    .button-soft-variant(@btn-warning-color; lighten(@btn-warning-bg, 33); @btn-warning-border);
+  }
+
+  &.btn-danger {
+    .button-soft-variant(@btn-danger-color; lighten(@btn-danger-bg, 38); @btn-danger-border);
+  }
+
+}
+
+
+.btn-thin, .btn-group-thin > .btn {
+  padding: 4px 10px;
+  font-size: 12px;
+  line-height: 1;
+  border-radius: 2px;
+}
+
+.btn-default.disabled {
+  background-color: #F2F1F1;
 }
