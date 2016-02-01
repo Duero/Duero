@@ -54,7 +54,7 @@ const ScheduleEditor = ({cleaners}) => {
       <div className="col-xs-6 col-sm-4 col-md-2">
         <div className="panel panel-primary">
           <div className="panel-heading">
-            <h3 className="panel-title">Objekty</h3>
+            <h3 className="panel-title">Nezaradené objekty</h3>
           </div>
           <div className="panel-body">
               <button type="button" className="btn btn-default btn-block">Cras justo odio</button>

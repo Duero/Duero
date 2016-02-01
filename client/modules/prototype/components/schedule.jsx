@@ -82,6 +82,11 @@ const Schedule = () => {
         <button type="button" className="btn btn-info extra-hours">+15 min</button>
         <button type="button" className="btn btn-info extra-hours">+1 hod</button>
 
+        <p className="text-muted">
+          <b>T. G. Masaryka 53:</b> domovnik byva na 4. poschodi<br/>
+          <b>Gogolova 125:</b> poriadne namokro umyt 3. poschodie (stazovali sa)
+        </p>
+        <p className="text-muted"></p>
       </dd>
       </dl>
     </div>
