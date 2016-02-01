@@ -36,8 +36,8 @@ const Schedule = () => {
       <dt>Hanka S.<br /><small><span className="text-muted">spolu 3:45</span></small></dt>
       <dd>
         <div className="btn-group">
-          <button type="button" className="btn btn-default btn-lg">T. G. Masaryka 55</button>
-          <button type="button" className="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button type="button" className="btn btn-warning btn-lg">T. G. Masaryka 55</button>
+          <button type="button" className="btn btn-warning dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span className="caret"></span>
             <span className="sr-only">Toggle Dropdown</span>
           </button>
@@ -75,14 +75,8 @@ const Schedule = () => {
           </ul>
         </div>
         <div className="btn-group">
-          <button type="button" className="btn btn-default btn-lg">+ 1:30 hod</button>
-          <button type="button" className="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span className="caret"></span>
-            <span className="sr-only">Toggle Dropdown</span>
-          </button>
-          <ul className="dropdown-menu dropdown-menu-right">
-            <li><a href="#">Zrušiť</a></li>
-          </ul>
+          <button type="button" className="btn btn-success btn-lg">+1:30 hod</button>
+          <button type="button" className="btn btn-success btn-lg"><i className="fa fa-times"></i></button>
         </div>
 
         <button type="button" className="btn btn-info extra-hours">+15 min</button>
