@@ -29,246 +29,68 @@ const Schedule = () => {
 
 
   return <div className="schedule">
-    <h1 className="text-center">Pondelok</h1>
+    <h1 className="text-center">Pondelok <small>(dnes)</small></h1>
 
     <div className="cleaner-box">
     <dl className="dl-horizontal">
       <dt>Hanka S.<br /><small><span className="text-muted">spolu 3:45</span></small></dt>
       <dd>
         <div className="btn-group">
-          <button type="button" className="btn btn-danger btn-lg">T. G. Masaryka 55</button>
+          <button type="button" className="btn btn-default btn-lg">T. G. Masaryka 55</button>
+          <button type="button" className="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span className="caret"></span>
+            <span className="sr-only">Toggle Dropdown</span>
+          </button>
+          <ul className="dropdown-menu dropdown-menu-right">
+            <li><a href="#">Hanka S.</a></li>
+            <li><a href="#">Evicka Hmmm.</a></li>
+            <li role="separator" className="divider"></li>
+            <li><a href="#">Zrušiť</a></li>
+          </ul>
+        </div>
+        <div className="btn-group">
+          <button type="button" className="btn btn-success btn-lg">T. G. Masaryka 53</button>
+          <button type="button" className="btn btn-success dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span className="caret"></span>
+            <span className="sr-only">Toggle Dropdown</span>
+          </button>
+          <ul className="dropdown-menu dropdown-menu-right">
+            <li><a href="#">Hanka S.</a></li>
+            <li><a href="#">Evicka Hmmm.</a></li>
+            <li role="separator" className="divider"></li>
+            <li><a href="#">Zrušiť</a></li>
+          </ul>
+        </div>
+        <div className="btn-group">
+          <button type="button" className="btn btn-danger btn-lg">T. G. Masaryka 57</button>
           <button type="button" className="btn btn-danger dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span className="caret"></span>
             <span className="sr-only">Toggle Dropdown</span>
           </button>
           <ul className="dropdown-menu dropdown-menu-right">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Hanka S.</a></li>
+            <li><a href="#">Evicka Hmmm.</a></li>
             <li role="separator" className="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="#">Zrušiť</a></li>
           </ul>
         </div>
+        <div className="btn-group">
+          <button type="button" className="btn btn-default btn-lg">+ 1:30 hod</button>
+          <button type="button" className="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span className="caret"></span>
+            <span className="sr-only">Toggle Dropdown</span>
+          </button>
+          <ul className="dropdown-menu dropdown-menu-right">
+            <li><a href="#">Zrušiť</a></li>
+          </ul>
+        </div>
+
+        <button type="button" className="btn btn-info extra-hours">+15 min</button>
+        <button type="button" className="btn btn-info extra-hours">+1 hod</button>
 
       </dd>
       </dl>
     </div>
-
-    <h1 className="text-center">Utorok <small>(dnes)</small></h1>
-
-    <div className="cleaner-box">
-      <div className="name">Hanka S. <small>spolu 3:45</small></div>
-      <div className="buildings">
-        <div className="btn-group">
-          <button type="button" className="btn btn-success">T. G. Masaryka 55</button>
-          <button type="button" className="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span className="caret"></span>
-            <span className="sr-only">Toggle Dropdown</span>
-          </button>
-          <ul className="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" className="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </div>
-
-        <div className="btn-group">
-          <button type="button" className="btn btn-success">M. R. Štefánika 55</button>
-          <button type="button" className="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span className="caret"></span>
-            <span className="sr-only">Toggle Dropdown</span>
-          </button>
-          <ul className="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" className="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </div>
-
-        <div className="btn-group">
-          <button type="button" className="btn btn-success">T. G. Masaryka 55</button>
-          <button type="button" className="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span className="caret"></span>
-            <span className="sr-only">Toggle Dropdown</span>
-          </button>
-          <ul className="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" className="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </div>
-
-        <button type="button" className="btn btn-info">+15 min</button>&nbsp;
-        <button type="button" className="btn btn-info">+1 hod</button>
-
-      </div>
-    </div>
-    <div className="cleaner-box">
-      <div className="name">Janka T.</div>
-      <div className="buildings">
-        <div className="btn-group">
-          <button type="button" className="btn btn-default">T. G. Masaryka 55</button>
-          <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span className="caret"></span>
-            <span className="sr-only">Toggle Dropdown</span>
-          </button>
-          <ul className="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" className="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </div>
-
-        <div className="btn-group">
-          <button type="button" className="btn btn-default">M. R. Štefánika 55</button>
-          <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span className="caret"></span>
-            <span className="sr-only">Toggle Dropdown</span>
-          </button>
-          <ul className="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" className="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </div>
-
-        <div className="btn-group">
-          <button type="button" className="btn btn-default">T. G. Masaryka 55</button>
-          <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span className="caret"></span>
-            <span className="sr-only">Toggle Dropdown</span>
-          </button>
-          <ul className="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" className="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </div>
-
-        <button type="button" className="btn btn-info">+15 min</button>&nbsp;
-        <button type="button" className="btn btn-info">+1 hod</button>
-
-      </div>
-    </div>
-    <div className="cleaner-box">
-      <div className="name">Hanka S.</div>
-      <div className="buildings">
-        <div className="btn-group">
-          <button type="button" className="btn btn-default">T. G. Masaryka 55</button>
-          <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span className="caret"></span>
-            <span className="sr-only">Toggle Dropdown</span>
-          </button>
-          <ul className="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" className="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </div>
-
-        <div className="btn-group">
-          <button type="button" className="btn btn-success">M. R. Štefánika 55</button>
-          <button type="button" className="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span className="caret"></span>
-            <span className="sr-only">Toggle Dropdown</span>
-          </button>
-          <ul className="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" className="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </div>
-
-        <div className="btn-group">
-          <button type="button" className="btn btn-success">T. G. Masaryka 55</button>
-          <button type="button" className="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span className="caret"></span>
-            <span className="sr-only">Toggle Dropdown</span>
-          </button>
-          <ul className="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" className="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </div>
-
-        <button type="button" className="btn btn-info">+15 min</button>&nbsp;
-        <button type="button" className="btn btn-info">+1 hod</button>
-
-      </div>
-    </div>
-    <div className="cleaner-box">
-      <div className="name">Hanka S.</div>
-      <div className="buildings">
-        <div className="btn-group">
-          <button type="button" className="btn btn-default">T. G. Masaryka 55</button>
-          <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span className="caret"></span>
-            <span className="sr-only">Toggle Dropdown</span>
-          </button>
-          <ul className="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" className="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </div>
-
-        <div className="btn-group">
-          <button type="button" className="btn btn-success">M. R. Štefánika 55</button>
-          <button type="button" className="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span className="caret"></span>
-            <span className="sr-only">Toggle Dropdown</span>
-          </button>
-          <ul className="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" className="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </div>
-
-        <div className="btn-group">
-          <button type="button" className="btn btn-success">T. G. Masaryka 55</button>
-          <button type="button" className="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span className="caret"></span>
-            <span className="sr-only">Toggle Dropdown</span>
-          </button>
-          <ul className="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" className="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </div>
-
-        <button type="button" className="btn btn-info">+15 min</button>&nbsp;
-        <button type="button" className="btn btn-info">+1 hod</button>
-
-      </div>
-    </div>
-
 
 
   </div>
