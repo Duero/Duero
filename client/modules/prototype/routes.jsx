@@ -5,6 +5,7 @@ import {mount} from 'react-mounter';
 import MainLayout from '/client/modules/prototype/components/layout.jsx';
 import ScheduleEditor from '/client/modules/prototype/components/scheduleEditor.jsx';
 import Schedule from '/client/modules/prototype/components/schedule.jsx';
+import MonthlyReport from '/client/modules/prototype/components/monthlyReport.jsx';
 
 export default function (injectDeps) {
   const MainLayoutCtx = injectDeps(MainLayout);
@@ -23,6 +24,15 @@ export default function (injectDeps) {
     action() {
       mount(MainLayoutCtx, {
         content: () => (<ScheduleEditor />)
+      });
+    }
+  });
+
+  FlowRouter.route('/prototype/monthly-report', {
+    name: 'prototype.monthlyReport',
+    action() {
+      mount(MainLayoutCtx, {
+        content: () => (<MonthlyReport />)
       });
     }
   });
