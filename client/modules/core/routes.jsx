@@ -2,6 +2,7 @@ import React from 'react';
 import {FlowRouter} from 'meteor/kadira:flow-router';
 import {mount} from 'react-mounter';
 
+import Nav from '/client/modules/core/containers/nav';
 import MainLayout from '/client/modules/core/components/layout.jsx';
 import BuildingCreate from '/client/modules/core/containers/buildingCreate';
 import BuildingEdit from '/client/modules/core/containers/buildingEdit';
