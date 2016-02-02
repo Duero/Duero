@@ -18,11 +18,11 @@ const Layout = ({content = () => null }) => (
 
 	    <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul className="nav navbar-nav">
-	        <li className="active"><a href="#">Dnes <span className="sr-only">(current)</span></a></li>
+	        <li className="active"><a href="/prototype/schedule">Dnes <span className="sr-only">(current)</span></a></li>
 	        <li><a href="#">Upratovačky</a></li>
 	        <li><a href="#">Objekty</a></li>
-	        <li><a href="#">Rozvrh</a></li>
-	        <li><a href="#">Link</a></li>
+	        <li><a href="/prototype/schedule-editor">Rozvrh</a></li>
+	        <li><a href="/prototype/monthly-report">Report mesačný</a></li>
 	      </ul>
 	    </div>
 	  </div>

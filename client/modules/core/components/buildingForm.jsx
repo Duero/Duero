@@ -26,7 +26,7 @@ const BuildingForm = ({building = {}, onSubmit}) => {
       <Input name="duration" type="text" label="Trvanie"  value={defaultValues.duration} />
       <Textarea name="note" label="Poznamka" value={defaultValues.note} />
 
-      <input className="btn btn-primary" type="submit" value="Pridat" />
+      <input className="btn btn-primary btn-lg" type="submit" value="Pridať" />
     </Formsy.Form>
   </div>
 };

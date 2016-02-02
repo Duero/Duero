@@ -3,7 +3,7 @@ import React from 'react';
 
 const Buildings = ({items}) => {
   return <div>
-    <a className="btn btn-primary" href="/new-building">Pridat</a>
+    <a className="btn btn-primary btn-lg pull-right" href="/new-building">Pridať nový objekt</a>
     <h1>Objekty</h1>
     <table className="table">
       <thead>
@@ -20,8 +20,8 @@ const Buildings = ({items}) => {
             <td>{item.name}</td>
             <td>{item.duration}</td>
             <td>{item.note}</td>
-            <td>
-              <a href={`/buildings/edit/${item._id}`}>upraviť</a>
+            <td className="text-right">
+              <a className="btn btn-primary btn-xs" href={`/buildings/edit/${item._id}`}>upraviť</a>
             </td>
           </tr>
         })}
