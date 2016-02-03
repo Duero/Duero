@@ -12,6 +12,7 @@ const CleanerForm = ({cleaner = {}, onSubmit}) => {
   };
 
   const handleSubmit = (values) => {
+    values.salary = parseFloat(values.salary)
     if(cleaner._id) {
       onSubmit(cleaner._id, values);
     } else {
@@ -23,7 +24,7 @@ const CleanerForm = ({cleaner = {}, onSubmit}) => {
     <h1>Upratovačka</h1>
     <Formsy.Form onSubmit={handleSubmit}>
       <Input name="name" type="text" label="Meno" value={defaultValues.name} />
-      <Input name="salary" type="text" label="Hodinovka"  value={defaultValues.salary} />
+      <Input name="salary" type="text" label="Hodinovka"  value={defaultValues.salary}  validations="isFloat"/>
       <Textarea name="note" label="Poznámka" value={defaultValues.note} />
 
       <input className="btn btn-primary btn-lg" type="submit" value="Pridať" />

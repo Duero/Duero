@@ -18,12 +18,12 @@ Meteor.methods({
   'cleaners.update'(_id, name, salary, note) {
     check(_id, String);
     check(name, String);
-    check(salary, String);
+    check(salary, Number);
     check(note, String);
 
     // TODO: Do some user authorization
     const data = {name, salary, note};
-
+    log(data)
     Cleaners.update(_id, {$set: data});
   }
 });
