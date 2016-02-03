@@ -1,5 +1,5 @@
 import {Meteor} from 'meteor/meteor';
-import {Buildings, Cleaners} from '/lib/collections';
+import {Buildings, Cleaners} from '/lib/collections/index';
 import faker from 'faker/locale/sk';
 import Seeder from './Seed.js';
 
@@ -27,5 +27,6 @@ Meteor.startup(function() {
       }
     }
   });
+
 
 });

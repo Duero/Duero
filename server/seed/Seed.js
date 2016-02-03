@@ -94,13 +94,13 @@ const Seeder = {
     min: 1,
     max: 20,
     onStart() {
-      console.log('Seeder.Start: ' + this.name)
+      console.log('Seeder: ' + this.name + "\t => Started")
     },
     onFinish() {
-      console.log('Seeder.Finish: ' + this.name)
+      console.log('Seeder: ' + this.name + "\t => Finished")
     },
     onSkip() {
-      console.log('Seeder.Skip: ' + this.name)
+      console.log('Seeder: ' + this.name + "\t => Skipped")
     }
   },
 
