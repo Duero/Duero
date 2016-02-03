@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Nav from '/client/modules/core/components/nav.jsx';
+import Navigation from '/client/modules/core/components/navigation.jsx';
 
 const Layout = ({content = () => null }) => (
   <div className="container-fluid">
-  	<Nav />
+  	<Navigation />
     {content()}
   </div>
 );
