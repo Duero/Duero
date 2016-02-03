@@ -24,6 +24,6 @@ Meteor.methods({
     // TODO: Do some user authorization
     const data = {name, duration, note};
 
-    Buildings.update(_id, data);
+    Buildings.update(_id, {$set: data});
   }
 });

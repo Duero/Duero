@@ -23,7 +23,8 @@ Meteor.startup(function() {
     data(index) {
       return {
         name: faker.name.firstName(1) + ' ' + faker.name.lastName(1),
-        hourlyRate: _.sample([2, 2.2, 2.5, 2.7, 3])
+        salary: _.sample([2, 2.2, 2.5, 2.7, 3]),
+        note: faker.lorem.sentence(10)
       }
     }
   });

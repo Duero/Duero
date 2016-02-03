@@ -5,7 +5,7 @@ import CleanerForm from '../components/cleanerForm.jsx';
 export const composer = ({context, cleanerId}, onData) => {
   const {Meteor, Collections, Tracker} = context();
 
-  Meteor.subscribe('cleaner.single', cleanerId, () => {
+  Meteor.subscribe('cleaners.single', cleanerId, () => {
     const cleaner = Collections.Cleaners.findOne(cleanerId);
     onData(null, {cleaner});
   });
