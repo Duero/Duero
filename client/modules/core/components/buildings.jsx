@@ -21,7 +21,7 @@ const Buildings = ({items}) => {
             <td>{item.duration}</td>
             <td>{item.note}</td>
             <td className="text-right">
-              <a className="btn btn-primary btn-xs" href={`/buildings/edit/${item._id}`}>upraviť</a>
+              <a className="btn btn-primary" href={`/buildings/edit/${item._id}`}>upraviť</a>
             </td>
           </tr>
         })}

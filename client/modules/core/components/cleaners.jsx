@@ -21,7 +21,7 @@ const Cleaners = ({items}) => {
             <td>{item.salary} EUR</td>
             <td>{item.note}</td>
             <td className="text-right">
-              <a className="btn btn-primary btn-xs" href={`/cleaners/edit/${item._id}`}>upraviť</a>
+              <a className="btn btn-primary" href={`/cleaners/edit/${item._id}`}>upraviť</a>
             </td>
           </tr>
         })}
