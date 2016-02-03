@@ -1,4 +1,4 @@
-class Seeder {
+class Seed {
 
   constructor(name, collection, options ) {
     if ( !collection || !options ) {
@@ -6,14 +6,13 @@ class Seeder {
     } else {
       this.name        = name;
       this.collection  = collection;
-      this.options     = Object.assign({
-        condition: (collection) => {
-          return !collection.find().count();
-        },
-        min: 1,
-        max: 20
-      }, options);
+      this.options     = options;
       this.isDataArray = this.options.data instanceof Array;
+      this.context     = {
+        name,
+        collection,
+        startData: null
+      };
 
       this.seed();
     }
@@ -23,7 +22,7 @@ class Seeder {
     let condition = this.options.condition;
 
     if ( condition  ) {
-      return condition(this.collection);
+      return condition.call(this.context);
     } else {
       return true;
     }
@@ -31,17 +30,19 @@ class Seeder {
 
   seed() {
     let options = this.options,
-      data    = options.data;
+      data      = options.data,
+      onStart   = options.onStart,
+      onFinish  = options.onFinish,
+      onSkip    = options.onSkip;
 
     if(this.shouldSeed()) {
-      console.log('Seeding '  + this.name);
+      if(onStart) this.context.startData = onStart.call(this.context);
+
       this.plant(data);
 
-      if ( options.data && options.model ) {
-        throw new Error( `Please choose to seed from either a data collection or a model. Cannot do both!` );
-      }
+      if(onFinish) onFinish.call(this.context);
     } else {
-      console.log('Seed ' + this.name + ' skipped...');
+      if(onSkip) onSkip.call(this.context);
     }
   }
 
@@ -51,7 +52,7 @@ class Seeder {
       isUsers            = collectionName === 'users';
 
     for ( let i = 0; i < loopLength; i++ ) {
-      let value = this.isDataArray ? data[ i ] : data( i );
+      let value = this.isDataArray ? data[ i ] : data.call(this.context, i);
 
       if ( isUsers ) {
         this.createUser( value );
@@ -64,7 +65,7 @@ class Seeder {
   _loopLength() {
     const random = (min, max) => {
       return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
+    };
 
     return this.isDataArray ? data.length : random(this.options.min, this.options.max);
   }
@@ -85,7 +86,32 @@ class Seeder {
   }
 }
 
+const Seeder = {
+  settings: {
+    condition() {
+      return this.collection.find().count() == 0;
+    },
+    min: 1,
+    max: 20,
+    onStart() {
+      console.log('Seeder.Start: ' + this.name)
+    },
+    onFinish() {
+      console.log('Seeder.Finish: ' + this.name)
+    },
+    onSkip() {
+      console.log('Seeder.Skip: ' + this.name)
+    }
+  },
 
-export default Seed = ( name, collection, options ) => {
-  return new Seeder( name, collection, options );
+  config(options) {
+    this.settings = Object.assign(this.settings, options);
+  },
+
+  seed(name, collection, options) {
+    options = Object.assign(this.settings, options);
+    return new Seed( name, collection, options );
+  }
 };
+
+export default Seeder;

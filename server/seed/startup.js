@@ -1,13 +1,13 @@
 import {Meteor} from 'meteor/meteor';
 import {Buildings, Cleaners} from '/lib/collections';
 import faker from 'faker/locale/sk';
-import Seed from './Seed.js';
+import Seeder from './Seed.js';
 
 Meteor.startup(function() {
 
   faker.locale = "sk";
 
-  Seed('Buildings init', Buildings, {
+  Seeder.seed('Buildings init', Buildings, {
     max: 70,
     data(index) {
       return {
@@ -18,7 +18,7 @@ Meteor.startup(function() {
     }
   });
 
-  Seed('Cleaners init', Cleaners, {
+  Seeder.seed('Cleaners init', Cleaners, {
     max: 6,
     data(index) {
       return {
