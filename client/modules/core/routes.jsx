@@ -59,7 +59,7 @@ export default function (injectDeps) {
     name: 'cleanerEdit',
     action({_id}) {
       mount(MainLayoutCtx, {
-        content: () => (<CleanerEdit buildingId={_id} />)
+        content: () => (<CleanerEdit cleanerId={_id} />)
       });
     }
   });
