@@ -18,7 +18,7 @@ Meteor.methods({
   'cleaners.update'(_id, name, salary, note) {
     check(_id, String);
     check(name, String);
-    check(salary, Number);
+    check(salary, String);
     check(note, String);
 
     // TODO: Do some user authorization

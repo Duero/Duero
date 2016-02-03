@@ -12,7 +12,6 @@ const CleanerForm = ({cleaner = {}, onSubmit}) => {
   };
 
   const handleSubmit = (values) => {
-    values.salary = parseFloat(values.salary)
     if(cleaner._id) {
       onSubmit(cleaner._id, values);
     } else {
