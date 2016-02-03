@@ -1,15 +1,15 @@
 import React from 'react';
 
 
-const Buildings = ({items}) => {
+const Cleaners = ({items}) => {
   return <div>
-    <a className="btn btn-success btn-lg pull-right" href="/buildings/new">Pridať nový objekt</a>
-    <h1>Objekty</h1>
+    <a className="btn btn-success btn-lg pull-right" href="/cleaners/new">Pridať novú upratovačku</a>
+    <h1>Upratovačky</h1>
     <table className="table">
       <thead>
         <tr>
-          <th>Adresa</th>
-          <th>Trvanie (norma)</th>
+          <th>Meno</th>
+          <th>Hodinovka</th>
           <th>Poznámky</th>
           <th />
         </tr>
@@ -18,10 +18,10 @@ const Buildings = ({items}) => {
         {items.map(item => {
           return <tr key={item._id}>
             <td>{item.name}</td>
-            <td>{item.duration}</td>
+            <td>{item.salary} EUR</td>
             <td>{item.note}</td>
             <td className="text-right">
-              <a className="btn btn-primary btn-xs" href={`/buildings/edit/${item._id}`}>upraviť</a>
+              <a className="btn btn-primary btn-xs" href={`/cleaners/edit/${item._id}`}>upraviť</a>
             </td>
           </tr>
         })}
@@ -30,4 +30,4 @@ const Buildings = ({items}) => {
   </div>
 };
 
-export default Buildings;
+export default Cleaners;
