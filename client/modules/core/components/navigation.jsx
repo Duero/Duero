@@ -12,7 +12,7 @@ const Navigation = () => {
           <span className="icon-bar"></span>
           <span className="icon-bar"></span>
         </button>
-        <a className="navbar-brand" href="#">Clean that shit!</a>
+        <a className="navbar-brand" href="#">Duero Clean, s.r.o.</a>
       </div>
 
       <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
