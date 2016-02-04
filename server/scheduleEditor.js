@@ -20,17 +20,17 @@ Meteor.methods({
     Buildings.update(parameters.buildingId, {$set: {assigned: true}});
   },
   'scheduleEditor.unassign'(parameters) {
+    log(parameters)
     check(parameters, {
-      cleanerId: String
+      buildingId: String
     });
 
     // TODO: Do some user authorization
 
-    const data = {cleaner_id: parameters.cleanerId};
-    const thisSchedule = Schedules.findOne(data);
+    const data = {building_id: parameters.buildingId};
     Schedules.remove(data);
 
-    Buildings.update(thisSchedule.building_id, {$set: {assigned: false}});
+    Buildings.update(parameters.buildingId, {$set: {assigned: false}});
   }
 
 });
