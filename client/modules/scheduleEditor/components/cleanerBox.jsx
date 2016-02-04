@@ -41,19 +41,21 @@ const CleanerBox = React.createClass({
 
     const cleaner = this.props.cleaner;
     const buildings = this.state.buildings;
+    let totalTime = 0;
     if (buildings.length) {
       buildingsDom = buildings.map((item, index) => {
+        totalTime +=item.duration;
         return <button key={index} className="btn btn-default btn-lg" type="button" data-id={item._id}>{item.name}</button>;
       });
     } else {
       buildingsDom =
-        <span className="italic text-muted">takto si nic nezarobi</span>;
+        <span className="italic text-muted">Takto si nič nezarobí :)</span>;
     }
 
     return <div className="cleaner-box">
       <dl className="dl-horizontal">
         <dt>{cleaner.name}<br />
-          <small className="text-muted">spolu 3:45</small>
+          <small className="text-muted">spolu {formatMinutes(totalTime)}</small>
         </dt>
         <dd ref="buildings">{buildingsDom}</dd>
       </dl>

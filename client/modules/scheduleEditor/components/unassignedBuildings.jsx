@@ -19,7 +19,7 @@ const UnassignedBuildings = React.createClass({
   },
 
   handleSort: function (event) {
-    log('UnassignedBuildings', event);
+    // log('UnassignedBuildings', event);
   },
 
   render() {
