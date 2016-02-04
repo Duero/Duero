@@ -23,7 +23,6 @@ Meteor.methods({
 
     // TODO: Do some user authorization
     const data = {name, salary, note};
-    log(data)
     Cleaners.update(_id, {$set: data});
   }
 });
