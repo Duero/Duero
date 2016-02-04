@@ -7,14 +7,20 @@ body {
 
 .cleaner-box {
   border-radius: @border-radius-base;
-  border: 1px dotted @btn-default-border;
+  border: 1px dashed @btn-default-border;
   padding: 5px 10px;
   margin-bottom: 4px;
+  border-width: 0 0 1px 0;
 
   .name {
     font-weight: bold;
   }
 }
+
+.cleaner-box:first-of-type {
+  border-top-width: 1px;
+}
+
 
 .schedule {
   dl {
