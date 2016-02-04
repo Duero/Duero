@@ -56,7 +56,6 @@ modules@0.4.1-modules.4
 momentjs:moment@2.9.0
 mongo@1.1.4-modules.4
 mongo-id@1.0.1
-mrt:moment@2.8.1
 nemo64:bootstrap@3.3.5_2
 nemo64:bootstrap-data@3.3.5
 npm-mongo@1.4.40-modules.4

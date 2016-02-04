@@ -21,7 +21,6 @@ reactive-dict
 aldeed:simple-schema
 aldeed:collection2
 dburles:collection-helpers
-mrt:moment
 rzymek:moment-locale-sk
 
 # UI
