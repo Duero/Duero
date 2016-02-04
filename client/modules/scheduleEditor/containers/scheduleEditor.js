@@ -3,12 +3,10 @@ import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 import ScheduleEditor from '../components/scheduleEditor.jsx';
 
 export const composer = ({context}, onData) => {
-  const {Meteor, Collections} = context();
+  const {Collections} = context();
 
-  if(Meteor.subscribe('schedule.all').ready()) {
-    const cleaners = Collections.Cleaners.find().fetch();
-    onData(null, {cleaners})
-  }
+  const cleaners = Collections.Cleaners.find().fetch();
+  onData(null, {cleaners});
 };
 
 export const mapper = (context, actions) => ({

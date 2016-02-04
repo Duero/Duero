@@ -3,16 +3,18 @@ import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 import BuildingForm from '../components/buildingForm.jsx';
 
 export const composer = ({context, buildingId}, onData) => {
-  const {Meteor, Collections, Tracker} = context();
+  const {Collections} = context();
 
-  Meteor.subscribe('buildings.single', buildingId, () => {
+  if(buildingId) {
     const building = Collections.Buildings.findOne(buildingId);
     onData(null, {building});
-  });
+  } else {
+    onData(null, {});
+  }
 };
 
 export const mapper = (context, actions) => ({
-  onSubmit: actions.buildings.update,
+  onSubmit: actions.buildings.save,
   context: () => context
 });
 

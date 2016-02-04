@@ -1,28 +1,23 @@
 import {Cleaners} from '/lib/collections';
 import {Meteor} from 'meteor/meteor';
-import {check} from 'meteor/check';
+import {check, Match} from 'meteor/check';
 
 Meteor.methods({
-  'cleaners.create'(name, salary, note) {
-    check(name, String);
-    check(salary, String);
-    check(note, String);
+  'cleaners.save'(id, data) {
+    check(id, Match.OneOf(String, null));
+    check(data, {
+      name: String,
+      salary: Number,
+      note: String
+    });
 
     // TODO: Do some user authorization
-    const createdAt = new Date();
-    const data = {name, salary, note, createdAt};
 
-    Cleaners.insert(data);
-  },
-
-  'cleaners.update'(_id, name, salary, note) {
-    check(_id, String);
-    check(name, String);
-    check(salary, String);
-    check(note, String);
-
-    // TODO: Do some user authorization
-    const data = {name, salary, note};
-    Cleaners.update(_id, {$set: data});
+    if(id) {
+      Cleaners.update(id, {$set: data});
+    } else {
+      data.createdAt = new Date();
+      Cleaners.insert(data);
+    }
   }
 });

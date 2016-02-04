@@ -1,17 +1,8 @@
 export default {
-  create({Meteor, FlowRouter}, {name, duration, note}) {
-    Meteor.call('buildings.create', name, duration, note, (error) => {
-      if(error) {
-        // ???
-      } else {
-        FlowRouter.go('buildings');
-      }
-    })
+  save({Meteor, FlowRouter}, id, data) {
+    data.duration = parseInt(data.duration);
 
-  },
-
-  update({Meteor, FlowRouter}, _id, {name, duration, note}) {
-    Meteor.call('buildings.update', _id, name, duration, note, (error) => {
+    Meteor.call('buildings.save', id, data, (error) => {
       if(error) {
         // ???
       } else {

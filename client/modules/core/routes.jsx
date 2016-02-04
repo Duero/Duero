@@ -4,24 +4,22 @@ import {mount} from 'react-mounter';
 
 import MainLayout from '/client/modules/core/components/layout.jsx';
 
-import BuildingCreate from '/client/modules/core/containers/buildingCreate';
-import BuildingEdit from '/client/modules/core/containers/buildingEdit';
+import BuildingForm from '/client/modules/core/containers/buildingForm';
 import Buildings from '/client/modules/core/containers/buildings';
 
-import CleanerCreate from '/client/modules/core/containers/cleanerCreate';
-import CleanerEdit from '/client/modules/core/containers/cleanerEdit';
+import CleanerForm from '/client/modules/core/containers/cleanerForm';
 import Cleaners from '/client/modules/core/containers/cleaners';
 
 export default function (injectDeps) {
   const MainLayoutCtx = injectDeps(MainLayout);
 
   // ==================== BUILDINGS ========================
-  
+
   FlowRouter.route('/buildings/new', {
     name: 'buildingCreate',
     action() {
       mount(MainLayoutCtx, {
-        content: () => (<BuildingCreate />)
+        content: () => (<BuildingForm />)
       });
     }
   });
@@ -30,7 +28,7 @@ export default function (injectDeps) {
     name: 'buildingEdit',
     action({_id}) {
       mount(MainLayoutCtx, {
-        content: () => (<BuildingEdit buildingId={_id} />)
+        content: () => (<BuildingForm buildingId={_id} />)
       });
     }
   });
@@ -50,7 +48,7 @@ export default function (injectDeps) {
     name: 'cleanerCreate',
     action() {
       mount(MainLayoutCtx, {
-        content: () => (<CleanerCreate />)
+        content: () => (<CleanerForm />)
       });
     }
   });
@@ -59,7 +57,7 @@ export default function (injectDeps) {
     name: 'cleanerEdit',
     action({_id}) {
       mount(MainLayoutCtx, {
-        content: () => (<CleanerEdit cleanerId={_id} />)
+        content: () => (<CleanerForm cleanerId={_id} />)
       });
     }
   });

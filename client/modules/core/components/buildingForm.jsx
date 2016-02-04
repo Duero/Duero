@@ -12,18 +12,15 @@ const BuildingForm = ({building = {}, onSubmit}) => {
   };
 
   const handleSubmit = (values) => {
-    if(building._id) {
-      onSubmit(building._id, values);
-    } else {
-      onSubmit(values);
-    }
+    const id = building._id || null;
+    onSubmit(id, values);
   };
 
   return <div>
     <h1>Objekt</h1>
     <Formsy.Form onSubmit={handleSubmit}>
       <Input name="name" type="text" label="Nazov" value={defaultValues.name} />
-      <Input name="duration" type="text" label="Trvanie"  value={defaultValues.duration} />
+      <Input name="duration" type="number" label="Trvanie v min." value={defaultValues.duration} />
       <Textarea name="note" label="Poznamka" value={defaultValues.note} />
 
       <input className="btn btn-primary btn-lg" type="submit" value="Pridať" />

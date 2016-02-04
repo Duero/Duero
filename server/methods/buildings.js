@@ -1,29 +1,22 @@
 import {Buildings} from '/lib/collections/index';
 import {Meteor} from 'meteor/meteor';
-import {check} from 'meteor/check';
+import {check, Match} from 'meteor/check';
 
 Meteor.methods({
-  'buildings.create'(name, duration, note) {
-    check(name, String);
-    check(duration, String);
-    check(note, String);
+  'buildings.save'(id, data) {
+    check(id, Match.OneOf(String, null));
+    check(data, {
+      name: String,
+      duration: Number,
+      note: String
+    });
 
     // TODO: Do some user authorization
-    const createdAt = new Date();
-    const data = {name, duration, note, createdAt};
-
-    Buildings.insert(data);
-  },
-
-  'buildings.update'(_id, name, duration, note) {
-    check(_id, String);
-    check(name, String);
-    check(duration, String);
-    check(note, String);
-
-    // TODO: Do some user authorization
-    const data = {name, duration, note};
-
-    Buildings.update(_id, {$set: data});
+    if(id) {
+      Buildings.update(id, {$set: data});
+    } else {
+      data.createdAt = new Date();
+      Buildings.insert(data);
+    }
   }
 });
