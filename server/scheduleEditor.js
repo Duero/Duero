@@ -12,25 +12,16 @@ Meteor.methods({
 
     // TODO: Do some user authorization
 
+    // un-assign building
+    Schedules.remove({building_id: parameters.buildingId});
+
+
     const createdAt = new Date();
     const data = {building_id: parameters.buildingId, cleaner_id: parameters.cleanerId, day: parameters.day, createdAt};
 
     Schedules.insert(data);
 
     Buildings.update(parameters.buildingId, {$set: {assigned: true}});
-  },
-  'scheduleEditor.unassign'(parameters) {
-    log(parameters)
-    check(parameters, {
-      buildingId: String
-    });
-
-    // TODO: Do some user authorization
-
-    const data = {building_id: parameters.buildingId};
-    Schedules.remove(data);
-
-    Buildings.update(parameters.buildingId, {$set: {assigned: false}});
   }
 
 });

@@ -29,13 +29,6 @@ const CleanerBox = React.createClass({
     });
   },
 
-  handleRemove(event) {
-    const id = event.item.dataset.id;
-    this.props.onUnassign({
-      buildingId: id
-    });
-  },
-
   render() {
     let buildingsDom;
 
@@ -43,9 +36,9 @@ const CleanerBox = React.createClass({
     const buildings = this.state.buildings;
     let totalTime = 0;
     if (buildings.length) {
-      buildingsDom = buildings.map((item, index) => {
+      buildingsDom = buildings.map(item => {
         totalTime +=item.duration;
-        return <button key={index} className="btn btn-default btn-lg" type="button" data-id={item._id}>{item.name}</button>;
+        return <button key={item._id} className="btn btn-default btn-lg" type="button" data-id={item._id}>{item.name}</button>;
       });
     } else {
       buildingsDom =
