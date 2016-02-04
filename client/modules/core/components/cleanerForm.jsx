@@ -3,7 +3,7 @@ import React from 'react';
 import Formsy from 'formsy-react';
 import {Input, Textarea} from 'formsy-react-components';
 
-const CleanerForm = ({cleaner = {}, onSubmit}) => {
+const CleanerForm = ({cleaner = {}, onSubmit, submitText = "Pridať"}) => {
 
   const defaultValues = {
     name: cleaner.name || '',
@@ -23,7 +23,7 @@ const CleanerForm = ({cleaner = {}, onSubmit}) => {
       <Input name="salary" type="number" label="Hodinovka"  value={defaultValues.salary} validations="isFloat" step="0.01"/>
       <Textarea name="note" label="Poznámka" value={defaultValues.note} />
 
-      <input className="btn btn-primary btn-lg" type="submit" value="Pridať" />
+      <input className="btn btn-primary btn-lg" type="submit" value={submitText} />
     </Formsy.Form>
   </div>
 };

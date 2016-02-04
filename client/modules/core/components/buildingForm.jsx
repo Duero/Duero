@@ -3,7 +3,7 @@ import React from 'react';
 import Formsy from 'formsy-react';
 import {Input, Textarea} from 'formsy-react-components';
 
-const BuildingForm = ({building = {}, onSubmit}) => {
+const BuildingForm = ({building = {}, onSubmit, submitText = "Pridať"}) => {
 
   const defaultValues = {
     name: building.name || '',
@@ -23,7 +23,7 @@ const BuildingForm = ({building = {}, onSubmit}) => {
       <Input name="duration" type="number" label="Trvanie v min." value={defaultValues.duration} />
       <Textarea name="note" label="Poznamka" value={defaultValues.note} />
 
-      <input className="btn btn-primary btn-lg" type="submit" value="Pridať" />
+      <input className="btn btn-primary btn-lg" type="submit" value={submitText} />
     </Formsy.Form>
   </div>
 };

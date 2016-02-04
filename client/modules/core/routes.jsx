@@ -28,7 +28,7 @@ export default function (injectDeps) {
     name: 'buildingEdit',
     action({_id}) {
       mount(MainLayoutCtx, {
-        content: () => (<BuildingForm buildingId={_id} />)
+        content: () => (<BuildingForm buildingId={_id} submitText="Uložiť"/>)
       });
     }
   });
@@ -57,7 +57,7 @@ export default function (injectDeps) {
     name: 'cleanerEdit',
     action({_id}) {
       mount(MainLayoutCtx, {
-        content: () => (<CleanerForm cleanerId={_id} />)
+        content: () => (<CleanerForm cleanerId={_id} submitText="Uložiť"/>)
       });
     }
   });
