@@ -31,7 +31,6 @@ const UnassignedBuildings = React.createClass({
         {this.state.items.map(item => {
           return <div key={item._id} className="btn btn-default btn-block btn-lg" data-id={item._id}>
             {item.name}
-            <span className="italic"> ({item.formattedDuration()})</span>
           </div>
         })}
       </div>
