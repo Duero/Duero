@@ -68,7 +68,7 @@ class Seed {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     };
 
-    return this.isDataArray ? data.length : random(this.options.min, this.options.max);
+    return this.isDataArray ? this.options.data.length : random(this.options.min, this.options.max);
   }
 
   createUser( user ) {

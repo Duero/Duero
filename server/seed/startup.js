@@ -1,12 +1,9 @@
 import {Meteor} from 'meteor/meteor';
 import {Buildings, Cleaners} from '/lib/collections/index';
-// import faker from 'faker/locale/sk';
 import Seeder from './Seed.js';
 
 Meteor.startup(function() {
-
-  // faker.locale = "sk";
-
+  
   Seeder.seed('Buildings init', Buildings, {
     data: [
       {name: 'Letomostie 7', duration: 60},
