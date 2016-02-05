@@ -35,6 +35,7 @@ class Seed {
       onFinish  = options.onFinish,
       onSkip    = options.onSkip;
 
+
     if(this.shouldSeed()) {
       if(onStart) this.context.startData = onStart.call(this.context);
 
