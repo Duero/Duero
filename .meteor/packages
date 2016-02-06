@@ -22,6 +22,7 @@ aldeed:simple-schema
 aldeed:collection2
 dburles:collection-helpers
 rzymek:moment-locale-sk
+percolate:synced-cron
 
 # UI
 fortawesome:fontawesome

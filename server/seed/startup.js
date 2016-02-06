@@ -3,7 +3,7 @@ import {Buildings, Cleaners} from '/lib/collections/index';
 import Seeder from './Seed.js';
 
 Meteor.startup(function() {
-  
+
   Seeder.seed('Buildings init', Buildings, {
     data: [
       {name: 'Letomostie 7', duration: 60, assigned: false},

@@ -5,6 +5,7 @@ import {initContext} from './context';
 import coreModule from './modules/core';
 import prototypeModule from './modules/prototype';
 import scheduleEditorModule from './modules/scheduleEditor';
+import scheduleModule from './modules/schedule';
 
 // init context
 const context = initContext();
@@ -14,4 +15,5 @@ const app = createApp(context);
 app.loadModule(coreModule);
 app.loadModule(prototypeModule);
 app.loadModule(scheduleEditorModule);
+app.loadModule(scheduleModule);
 app.init();

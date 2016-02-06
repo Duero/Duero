@@ -10,6 +10,7 @@
   "author": "name",
   "license": "ISC",
   "dependencies": {
+    "classnames": "^2.2.3",
     "enumify": "^1.0.4",
     "formsy-react": "0.17.x",
     "formsy-react-components": "^0.6.6",
