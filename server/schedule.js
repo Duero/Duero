@@ -6,7 +6,8 @@ Meteor.methods({
   'schedule.markAsDone'(jobId) {
     check(jobId, String);
 
-    Jobs.update(jobId, {$set: {done: true}});
+    const today = moment({ hour: 0, minute: 0, second: 0 });
+    Jobs.update(jobId, {$set: {date: today.toDate(), done: true}});
   },
 
   'schedule.reassign'(jobId, cleanerId) {

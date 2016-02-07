@@ -6,10 +6,6 @@ const Day = ({cleaners, date, isToday, isOverdue, onButtonClick, onReassign, onC
 
   const dateName = isToday ? 'dnes' : date.format('D. MMM YY');
 
-  const handleButtonClick = (job) => {
-    if(isToday) onButtonClick(job)
-  };
-
   return <div className="schedule">
     <h1 className="text-center">{date.format('dddd')} <span className="small">{dateName}</span></h1>
 
@@ -28,7 +24,7 @@ const Day = ({cleaners, date, isToday, isOverdue, onButtonClick, onReassign, onC
               let dropdownClass = buttonClass + ' dropdown-toggle';
 
               return <div key={job._id} className="btn-group btn-group-lg">
-                <button type="button" className={buttonClass} onClick={() => handleButtonClick(job)}>{job.building().name}</button>
+                <button type="button" className={buttonClass} onClick={() => onButtonClick(job)}>{job.building().name}</button>
                 <button type="button" className={dropdownClass} data-toggle="dropdown">
                   <span className="caret" />
                 </button>
