@@ -21,5 +21,21 @@ export default {
         // ???
       }
     })
+  },
+
+  addOvertime({Meteor, FlowRouter}, cleaner, date, overtime) {
+    Meteor.call('schedule.addOvertime', cleaner._id, date, overtime, (error) => {
+      if(error) {
+        // ???
+      }
+    })
+  },
+
+  cancelOvertime({Meteor, FlowRouter}, cleaner, date) {
+    Meteor.call('schedule.cancelOvertime', cleaner._id, date, (error) => {
+      if(error) {
+        // ???
+      }
+    })
   }
 };

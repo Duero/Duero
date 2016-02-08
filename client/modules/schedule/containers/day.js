@@ -14,6 +14,8 @@ export const mapper = (context, actions) => ({
   onButtonClick: actions.schedule.markAsDone,
   onReassign: actions.schedule.reassign,
   onCancel: actions.schedule.cancel,
+  onAddOvertime: actions.schedule.addOvertime,
+  onCancelOvertime: actions.schedule.cancelOvertime,
   context: () => context
 });
 

@@ -11,7 +11,7 @@ export const composer = ({context}, onData) => {
   const getDayKey = (date) => (date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay());
 
   if(Meteor.subscribe('jobs.todo').ready()) {
-    const days = {};
+    let days = {};
     Collections.Jobs.find({done: false, date: {$lt: today.toDate()}}, {sort: {date: 1}}).forEach(job => {
       const jobDate = job.date;
       const dayKey = getDayKey(jobDate);
@@ -23,11 +23,14 @@ export const composer = ({context}, onData) => {
       }
     });
 
-    days[getDayKey(today.toDate())] = {
+    days = _.values(days);
+    days = _.sortBy(days, 'date');
+
+    days.push({
       date: today,
       isToday: true,
       isOverdue: moment({ hour: 15, minute: 0, second: 0 }).isBefore(moment())
-    };
+    });
 
     onData(null, {days});
   }
