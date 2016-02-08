@@ -35,8 +35,9 @@ export const composer = ({context, cleanerId, month}, onData) => {
 
     _.each(jobs, function(item) {
       totals.duration += item.duration;
-      totals.price += item.price;
-      if (item.paid != true) totals.unpaid += item.price;
+      const thisPrice = item.duration / 60 * item.salary
+      totals.price += thisPrice;
+      if (item.paid != true) totals.unpaid += thisPrice;
     });
 
     onData(null, {jobs, month, cleaner, allCleaners, allMonths, Collections, totals});
@@ -44,7 +45,7 @@ export const composer = ({context, cleanerId, month}, onData) => {
 };
 
 export const mapper = (context, actions) => ({
-  // onSubmit: actions.buildings.save,
+  onMarkAllAsPaid: actions.jobs.markAllAsPaid,
   context: () => context
 });
 

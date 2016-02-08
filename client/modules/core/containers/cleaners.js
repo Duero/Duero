@@ -4,7 +4,7 @@ import Cleaners from '../components/cleaners.jsx';
 
 export const composer = ({context}, onData) => {
   const {Collections} = context();
-  const items = Collections.Cleaners.find().fetch();
+  const items = Collections.Cleaners.find({}, {sort: {name: 1}}).fetch();
   onData(null, {items});
 };
 

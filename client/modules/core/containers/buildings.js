@@ -4,7 +4,7 @@ import Buildings from '../components/buildings.jsx';
 
 export const composer = ({context}, onData) => {
   const {Collections} = context();
-  const items = Collections.Buildings.find().fetch();
+  const items = Collections.Buildings.find({}, {sort: {name: 1}}).fetch();
   onData(null, {items});
 };
 

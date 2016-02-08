@@ -11,12 +11,9 @@ Meteor.methods({
     const cleaner = Cleaners.findOne(job.cleaner_id);
     const building = Buildings.findOne(job.building_id);
 
-    const price = cleaner.salary / 60 * building.duration;
-
     const update = {
       date: today.toDate(), 
       done: true, 
-      price: price, 
       salary: cleaner.salary, 
       duration: building.duration
     };
@@ -34,14 +31,12 @@ Meteor.methods({
     const cleaner = Cleaners.findOne(cleanerId);
     const building = Buildings.findOne(job.building_id);
 
-    const price = cleaner.salary / 60 * building.duration;
-
     Jobs.update(jobId, {$set: {
       cleaner_id: cleanerId, 
       date: today.toDate(), 
-      price: price, 
       salary: cleaner.salary, 
-      duration: building.duration
+      duration: building.duration,
+      done: true
     }});
   },
 
@@ -58,6 +53,8 @@ Meteor.methods({
     check(overtime, Number);
 
     const overtimeJob = Jobs.findOne({cleaner_id: cleanerId, date: date, building_id: null});
+    const cleaner = Cleaners.findOne(cleanerId);
+
     if(overtimeJob) {
       Jobs.update(overtimeJob._id, {$inc: {duration: overtime}});
     } else {
@@ -66,6 +63,7 @@ Meteor.methods({
         building_id: null,
         date: date,
         done: true,
+        salary: cleaner.salary,
         duration: overtime
       });
     }
