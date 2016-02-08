@@ -2,7 +2,7 @@ import {Buildings, Cleaners, Schedules, Jobs} from '/lib/collections/index';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
-Meteor.publish(null, function () {
+Meteor.publish('core.init', function () {
   return [
     Buildings.find(),
     Cleaners.find(),
