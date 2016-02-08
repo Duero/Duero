@@ -2,8 +2,6 @@ import React from 'react';
 
 
 const MonthlyReport = ({month, jobs, cleaner, allCleaners, allMonths, Collections, totals}) => {
-  if (!cleaner || !month) return <div></div>;
-  
   const thisMonth = moment(month, 'YYYYMM');
   const thisCleaner = Collections.Cleaners.findOne(cleaner._id) || {};
 
@@ -11,26 +9,24 @@ const MonthlyReport = ({month, jobs, cleaner, allCleaners, allMonths, Collection
   return <div className="schedule">
       <div className="btn-group pull-right">
         <button type="button" className="btn btn-default btn-lg">{thisCleaner.name}</button>
-        <button type="button" className="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span className="caret"></span>
-          <span className="sr-only">Toggle Dropdown</span>
+        <button type="button" className="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown">
+          <span className="caret" />
         </button>
         <ul className="dropdown-menu dropdown-menu-right">
           {allCleaners.map(item => {
-            return <li><a href={`/monthly-report/${item._id}/${thisMonth.format('YYYYMM')}`}>{item.name}</a></li>
+            return <li key={item._id}><a href={`/monthly-report/${item._id}/${thisMonth.format('YYYYMM')}`}>{item.name}</a></li>
           })}
         </ul>
       </div>
 
       <div className="btn-group pull-right">
         <button type="button" className="btn btn-default btn-lg">{thisMonth.format('MMMM YYYY')}</button>
-        <button type="button" className="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span className="caret"></span>
-          <span className="sr-only">Toggle Dropdown</span>
+        <button type="button" className="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown">
+          <span className="caret" />
         </button>
         <ul className="dropdown-menu dropdown-menu-right">
           {allMonths.map(item => {
-            return <li><a href={`/monthly-report/${cleaner._id}/${item.value}`}>{item.name}</a></li>
+            return <li key={item.value}><a href={`/monthly-report/${cleaner._id}/${item.value}`}>{item.name}</a></li>
           })}
         </ul>
       </div>
@@ -48,11 +44,9 @@ const MonthlyReport = ({month, jobs, cleaner, allCleaners, allMonths, Collection
       </thead>
       <tbody>
         {jobs.map(item => {
-          const building = Collections.Buildings.findOne(item.building_id);
-
           return <tr key={item._id}>
             <td>{moment(item.date).format('d. MMMM YYYY')}</td>
-            <td>{building.name}</td>
+            <td>{item.title()}</td>
             <td className="text-right">{item.salary || '?'} EUR</td>
             <td className="text-right">{formatMinutes(item.duration || 0)} hod</td>
             <td className="text-right">{item.price || '?'} EUR</td>

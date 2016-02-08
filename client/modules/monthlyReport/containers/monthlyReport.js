@@ -5,12 +5,15 @@ import MonthlyReport from '../components/monthlyReport.jsx';
 export const composer = ({context, cleanerId, month}, onData) => {
   const {Collections} = context();
   const allCleaners = Collections.Cleaners.find({}, {sort: {name: 1}});
-  const allMonths = [];
 
-  for (var i = 0; i < 25; i++) {
+  const monthsStart = moment("2016-01-01 0:00 +0000", "YYYY-MM-DD HH:mm Z");
+  const currentMonth = moment({day: 0, hour: 0, minute: 0, second: 0});
+  const monthsDiff = currentMonth.diff(monthsStart, 'months');
+  const allMonths = [];
+  for (var i = 0; i <= monthsDiff; i++) {
     allMonths.push({
-      value: moment().subtract(i, 'months').format('YYYYMM'),
-      name: moment().subtract(i, 'months').format('MMMM YYYY')
+      value: moment(currentMonth).subtract(i, 'months').format('YYYYMM'),
+      name: moment(currentMonth).subtract(i, 'months').format('MMMM YYYY')
     })
   }
 
@@ -28,7 +31,7 @@ export const composer = ({context, cleanerId, month}, onData) => {
       duration: 0,
       price: 0,
       unpaid: 0
-    }
+    };
 
     _.each(jobs, function(item) {
       totals.duration += item.duration;
@@ -36,9 +39,7 @@ export const composer = ({context, cleanerId, month}, onData) => {
       if (item.paid != true) totals.unpaid += item.price;
     });
 
-    onData(null, {jobs, cleaner, allCleaners, allMonths, Collections, totals});
-  } else {
-    onData(null, {});
+    onData(null, {jobs, month, cleaner, allCleaners, allMonths, Collections, totals});
   }
 };
 
