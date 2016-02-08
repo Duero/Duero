@@ -15,3 +15,10 @@ Meteor.publish('jobs.todo', function() {
   const today = moment({ hour: 0, minute: 0, second: 0 });
   return Jobs.find({$or: [{done: false}, {date: today.toDate()}]});
 });
+
+Meteor.publish('jobs.monthlyReport', function(month, cleanerId) {
+	const monthStart = moment(month, 'YYYYMM').startOf('month').toDate();
+	const monthEnd = moment(month, 'YYYYMM').endOf('month').toDate();
+
+  return Jobs.find({cleaner_id: cleanerId, date: {$gte: monthStart, $lte: monthEnd}, done: true});
+});
