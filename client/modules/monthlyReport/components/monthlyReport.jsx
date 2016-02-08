@@ -1,7 +1,10 @@
 import React from 'react';
 
 
-const MonthlyReport = () => {
+const MonthlyReport = ({cleanerId, month, jobs, cleaner, Collections}) => {
+  log(cleanerId, month, jobs, cleaner);
+
+  const thisMonth = moment(month, 'YYYYMM')
 
   return <div className="schedule">
       <div className="btn-group pull-right">
@@ -32,7 +35,7 @@ const MonthlyReport = () => {
         </ul>
       </div>
 
-    <h1>Hanka H. <small>(Jan 2016)</small></h1>
+    <h1>{cleaner.name} <small>({thisMonth.format('MMMM YYYY')})</small></h1>
 
     <table className="table table-hover">
       <thead>
@@ -45,34 +48,17 @@ const MonthlyReport = () => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>15. Január 2016</td>
-          <td>Gogolova 45</td>
-          <td className="text-right">2,50 EUR</td>
-          <td className="text-right">1:30 hod</td>
-          <td className="text-right">3,75 EUR</td>
-        </tr>
-        <tr>
-          <td>15. Január 2016</td>
-          <td>Gogolova 45</td>
-          <td className="text-right">2,50 EUR</td>
-          <td className="text-right">1:30 hod</td>
-          <td className="text-right">3,75 EUR</td>
-        </tr>
-        <tr>
-          <td>15. Január 2016</td>
-          <td>Gogolova 45</td>
-          <td className="text-right">2,50 EUR</td>
-          <td className="text-right">1:30 hod</td>
-          <td className="text-right">3,75 EUR</td>
-        </tr>
-        <tr>
-          <td>15. Január 2016</td>
-          <td>Gogolova 45</td>
-          <td className="text-right">2,50 EUR</td>
-          <td className="text-right">1:30 hod</td>
-          <td className="text-right"><i className="fa fa-check"></i> 3,75 EUR</td>
-        </tr>
+        {jobs.map(item => {
+          const building = Collections.Buildings.findOne(item.building_id);
+
+          return <tr key={item._id}>
+            <td>{moment(item.date).format('d. MMMM YYYY')}</td>
+            <td>{building.name}</td>
+            <td className="text-right">{item.salary} EUR</td>
+            <td className="text-right">{formatMinutes(item.duration)} hod</td>
+            <td className="text-right">{item.price} EUR</td>
+          </tr>
+        })}
       </tbody>
       <tfoot>
         <tr className="danger" style={{fontWeight: 'bold'}}>

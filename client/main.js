@@ -6,6 +6,7 @@ import coreModule from './modules/core';
 import prototypeModule from './modules/prototype';
 import scheduleEditorModule from './modules/scheduleEditor';
 import scheduleModule from './modules/schedule';
+import monthlyReport from './modules/monthlyReport';
 
 // init context
 const context = initContext();
@@ -16,4 +17,5 @@ app.loadModule(coreModule);
 app.loadModule(prototypeModule);
 app.loadModule(scheduleEditorModule);
 app.loadModule(scheduleModule);
+app.loadModule(monthlyReport);
 app.init();
