@@ -9,5 +9,9 @@ export default {
       }
     })
 
+  },
+
+  setActive({Collections}, id, active = true) {
+    Collections.Cleaners.update(id, {$set: {active}});
   }
 };

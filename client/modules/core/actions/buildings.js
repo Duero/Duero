@@ -10,5 +10,9 @@ export default {
       }
     })
 
+  },
+
+  setActive({Collections}, id, active = true) {
+    Collections.Buildings.update(id, {$set: {active}});
   }
 };

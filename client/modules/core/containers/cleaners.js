@@ -8,8 +8,13 @@ export const composer = ({context}, onData) => {
   onData(null, {items});
 };
 
+export const mapper = (context, actions) => ({
+  onSetActive: actions.cleaners.setActive,
+  context: () => context
+});
+
 
 export default composeAll(
   composeWithTracker(composer),
-  useDeps()
+  useDeps(mapper)
 )(Cleaners);

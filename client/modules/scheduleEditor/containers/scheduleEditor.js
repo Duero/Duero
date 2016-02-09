@@ -5,7 +5,7 @@ import ScheduleEditor from '../components/scheduleEditor.jsx';
 export const composer = ({context}, onData) => {
   const {Collections} = context();
 
-  const cleaners = Collections.Cleaners.find({}, {sort: {name: 1}}).fetch();
+  const cleaners = Collections.Cleaners.find({active: true}, {sort: {name: 1}}).fetch();
   onData(null, {cleaners});
 };
 
