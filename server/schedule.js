@@ -12,9 +12,9 @@ Meteor.methods({
     const building = Buildings.findOne(job.building_id);
 
     const update = {
-      date: today.toDate(), 
-      done: true, 
-      salary: cleaner.salary, 
+      date: today.toDate(),
+      done: true,
+      salary: cleaner.salary,
       duration: building.duration
     };
     log(update)
@@ -32,9 +32,9 @@ Meteor.methods({
     const building = Buildings.findOne(job.building_id);
 
     Jobs.update(jobId, {$set: {
-      cleaner_id: cleanerId, 
-      date: today.toDate(), 
-      salary: cleaner.salary, 
+      cleaner_id: cleanerId,
+      date: today.toDate(),
+      salary: cleaner.salary,
       duration: building.duration,
       done: true
     }});

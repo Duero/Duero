@@ -45,7 +45,7 @@ export const composer = ({context, cleanerId, month}, onData) => {
 };
 
 export const mapper = (context, actions) => ({
-  onMarkAllAsPaid: actions.jobs.markAllAsPaid,
+  onMarkAllAsPaid: actions.monthlyReport.markAllAsPaid,
   context: () => context
 });
 
