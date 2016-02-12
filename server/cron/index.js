@@ -1,5 +1,5 @@
 //import SyncedCron from 'meteor/synced-cron';
-import {createJobs} from '../scheduleEditor';
+// import {createJobs} from '../scheduleEditor';
 
 SyncedCron.add({
   name: 'Schedule jobs',
@@ -15,5 +15,4 @@ SyncedCron.add({
 
 Meteor.startup(function() {
   SyncedCron.start();
-  createJobs();
 });

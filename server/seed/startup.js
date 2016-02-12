@@ -1,6 +1,7 @@
 import {Meteor} from 'meteor/meteor';
 import {Buildings, Cleaners, Schedules} from '/lib/collections/index';
 import Seeder from './Seed.js';
+import {createJobs} from '../scheduleEditor';
 
 Meteor.startup(function() {
 
@@ -289,5 +290,7 @@ Meteor.startup(function() {
   Seeder.seed('Schedules init', Schedules, {
     data: scheduleData1
   });
+
+  createJobs();
 
 });
