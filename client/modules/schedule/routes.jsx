@@ -8,7 +8,7 @@ import Schedule from './containers/schedule.js';
 export default function (injectDeps) {
   const MainLayoutCtx = injectDeps(MainLayout);
 
-  FlowRouter.route('/schedule', {
+  FlowRouter.route('/', {
     name: 'schedule',
     action() {
       mount(MainLayoutCtx, {

@@ -17,7 +17,7 @@ const Navigation = () => {
 
       <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul className="nav navbar-nav">
-          <li><a href="/schedule">Dnes</a></li>
+          <li><a href="/">Dnes</a></li>
           <li><a href="/cleaners">Upratovačky</a></li>
           <li><a href="/buildings">Objekty</a></li>
           <li><a href="/schedule-editor">Naplánovať rozvrh</a></li>
