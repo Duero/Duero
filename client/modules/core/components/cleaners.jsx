@@ -9,7 +9,6 @@ const Cleaners = ({items, onSetActive}) => {
       <thead>
         <tr>
           <th>Meno</th>
-          <th>Hodinovka</th>
           <th>Poznámky</th>
           <th />
         </tr>
@@ -26,7 +25,6 @@ const Cleaners = ({items, onSetActive}) => {
           }
           return <tr key={item._id} className={rowClass}>
             <td>{item.name}</td>
-            <td>{item.salary} EUR</td>
             <td>{item.note}</td>
             <td className="text-right">
               {activeButton}&nbsp;

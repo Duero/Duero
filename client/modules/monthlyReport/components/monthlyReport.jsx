@@ -8,8 +8,8 @@ const MonthlyReport = ({month, jobs, cleaner, allCleaners, allMonths, Collection
 
   return <div className="schedule">
       <div className="btn-group pull-right">
-        <button type="button" className="btn btn-default btn-lg">{thisCleaner.name}</button>
-        <button type="button" className="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown">
+        <button type="button" className="btn btn-info btn-lg">{thisCleaner.name}</button>
+        <button type="button" className="btn btn-info dropdown-toggle btn-lg" data-toggle="dropdown">
           <span className="caret" />
         </button>
         <ul className="dropdown-menu dropdown-menu-right">
@@ -19,9 +19,9 @@ const MonthlyReport = ({month, jobs, cleaner, allCleaners, allMonths, Collection
         </ul>
       </div>
 
-      <div className="btn-group pull-right">
-        <button type="button" className="btn btn-default btn-lg">{thisMonth.format('MMMM YYYY')}</button>
-        <button type="button" className="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown">
+      <div className="btn-group pull-right" style={{marginRight: '20px'}}>
+        <button type="button" className="btn btn-info btn-lg">{thisMonth.format('MMMM YYYY')}</button>
+        <button type="button" className="btn btn-info dropdown-toggle btn-lg" data-toggle="dropdown">
           <span className="caret" />
         </button>
         <ul className="dropdown-menu dropdown-menu-right">

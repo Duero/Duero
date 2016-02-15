@@ -26,7 +26,7 @@ const Buildings = ({items, onSetActive}) => {
           }
           return <tr key={item._id} className={rowClass}>
             <td>{item.name}</td>
-            <td>{item.duration}</td>
+            <td>{formatMinutes(item.duration)}</td>
             <td>{item.note}</td>
             <td className="text-right">
               {activeButton}&nbsp;

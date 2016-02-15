@@ -1,0 +1,28 @@
+cd /var/www/duero
+forever stop duero
+
+cd /var/www/duero
+forever stop duero
+rm -rf bundle-copy-old
+mv bundle-copy bundle-copy-old
+cp -r bundle bundle-copy
+rm -rf bundle
+tar xfz duero.tar.gz -C /var/www/duero
+mkdir bundle/programs/server/node_modules
+rm -rf bundle/programs/server/npm/npm-bcrypt
+npm install bcrypt
+pushd bundle/programs/server/node_modules
+rm -rf fibers
+npm install fibers
+npm install underscore
+npm install source-map-support
+npm install semver
+popd
+METEOR_SETTINGS='{"private": {},"public" : {}}' PORT=3005 ROOT_URL=http://www.dueroclean.sk MONGO_URL=mongodb://192.168.4.62:27017/duero MONGO_OPLOG_URL=mongodb://192.168.4.62:27017/local LC_ALL="en_GB.UTF-8" forever -a --uid "duero" start bundle/main.js
+
+
+cd /var/www/duero
+forever stop duero
+METEOR_SETTINGS='{"private": {},"public" : {}}' PORT=3005 ROOT_URL=http://www.dueroclean.sk MONGO_URL=mongodb://192.168.4.62:27017/duero MONGO_OPLOG_URL=mongodb://192.168.4.62:27017/local LC_ALL="en_GB.UTF-8" forever -a --uid "duero" start bundle/main.js
+
+tail -f -n 1000 /var/www/.forever/duero.log
