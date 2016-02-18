@@ -42,9 +42,12 @@ Meteor.methods({
 
   'schedule.cancel'(jobId) {
     check(jobId, String);
+    Jobs.update(jobId, {$set: {done: false}});
+  },
 
-    log('@TODO');
-    //Jobs.update(jobId, {$set: {done: true}});
+  'schedule.skip'(jobId) {
+    check(jobId, String);
+    Jobs.remove(jobId);
   },
 
   'schedule.addOvertime'(cleanerId, date, overtime) {

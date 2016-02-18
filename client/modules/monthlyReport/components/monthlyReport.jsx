@@ -8,9 +8,8 @@ const MonthlyReport = ({month, jobs, cleaner, allCleaners, allMonths, Collection
 
   return <div className="schedule">
       <div className="btn-group pull-right">
-        <button type="button" className="btn btn-info btn-lg">{thisCleaner.name}</button>
-        <button type="button" className="btn btn-info dropdown-toggle btn-lg" data-toggle="dropdown">
-          <span className="caret" />
+        <button type="button" className="btn btn-info dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {thisCleaner.name} <span className="caret"></span>
         </button>
         <ul className="dropdown-menu dropdown-menu-right">
           {allCleaners.map(item => {
@@ -20,9 +19,8 @@ const MonthlyReport = ({month, jobs, cleaner, allCleaners, allMonths, Collection
       </div>
 
       <div className="btn-group pull-right" style={{marginRight: '20px'}}>
-        <button type="button" className="btn btn-info btn-lg">{thisMonth.format('MMMM YYYY')}</button>
-        <button type="button" className="btn btn-info dropdown-toggle btn-lg" data-toggle="dropdown">
-          <span className="caret" />
+        <button type="button" className="btn btn-info dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {thisMonth.format('MMMM YYYY')} <span className="caret"></span>
         </button>
         <ul className="dropdown-menu dropdown-menu-right">
           {allMonths.map(item => {

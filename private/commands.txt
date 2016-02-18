@@ -26,3 +26,29 @@ forever stop duero
 METEOR_SETTINGS='{"private": {},"public" : {}}' PORT=3005 ROOT_URL=http://www.dueroclean.sk MONGO_URL=mongodb://192.168.4.62:27017/duero MONGO_OPLOG_URL=mongodb://192.168.4.62:27017/local LC_ALL="en_GB.UTF-8" forever -a --uid "duero" start bundle/main.js
 
 tail -f -n 1000 /var/www/.forever/duero.log
+
+
+
+MONGO_URL=mongodb://127.0.0.1:27017/duero meteor --port 3050
+
+
+// DUMP
+ssh www-data@meteor.soft1.sk
+cd /var/www/duero
+mongodump --host 192.168.4.62:27017 --db duero
+tar -zcvf duero-dump.tar.gz dump/duero
+mv duero-dump.tar.gz /var/www/uns/uploads/duero-dump.tar.gz
+exit
+
+=====================
+
+rm -f /meteor/.dump/duero-dump.tar.gz
+rm -rf /meteor/.dump/dump
+cd /meteor/.dump
+curl -O "http://img.uns.sk/duero-dump.tar.gz"
+tar xfz duero-dump.tar.gz -C /meteor/.dump
+cd /meteor/.dump/dump
+mongorestore --host localhost --db duero --drop duero
+tput bel
+
+http://img.uns.sk/duero-dump.tar.gz

@@ -20,7 +20,17 @@ export default {
       if(error) {
         // ???
       }
-    })
+    });
+    return false;
+  },
+
+  skip({Meteor, FlowRouter}, job) {
+    Meteor.call('schedule.skip', job._id, (error) => {
+      if(error) {
+        // ???
+      }
+    });
+    return false;
   },
 
   addOvertime({Meteor, FlowRouter}, cleaner, date, overtime) {

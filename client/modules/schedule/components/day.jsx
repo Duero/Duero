@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 
-const Day = ({cleaners, date, isToday, isOverdue, onButtonClick, onReassign, onCancel, onAddOvertime, onCancelOvertime}) => {
+const Day = ({cleaners, date, isToday, isOverdue, onButtonClick, onReassign, onCancel, onSkip, onAddOvertime, onCancelOvertime}) => {
 
   const dateName = isToday ? 'dnes' : date.format('D. MMM YY');
 
@@ -51,8 +51,13 @@ const Day = ({cleaners, date, isToday, isOverdue, onButtonClick, onReassign, onC
                         <a href="#" onClick={() => onReassign(job, item)}>{item.name}</a>
                       </li>;
                     })}
+
                     <li className="divider" />
-                    <li><a href="#" onClick={() => onCancel(job)}>Zrušiť</a></li>
+
+                    {
+                    (job.done == true) ? <li><a href="#" onClick={() => onCancel(job)}>Neurobené</a></li> : ''}
+                    <li><a href="#" onClick={() => onSkip(job)}>Tentokrát zrušiť</a></li>
+                    
                   </ul>
                 </div>
               }
