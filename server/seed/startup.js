@@ -274,22 +274,22 @@ Meteor.startup(function() {
       {day: 5, building: 'Žerotínová bašta 15', cleaner: 'Gabika K.'}
   ];
 
-  var scheduleData1 = [];
-  _.each(scheduleData, function(item, index) {
+  // var scheduleData1 = [];
+  // _.each(scheduleData, function(item, index) {
 
-      if (!allBuildings[item.building]) log('Missing building:', item.building)
-      if (!allCleaners[item.cleaner]) log('Missing cleaner:-' + item.cleaner + '-')
-      scheduleData1.push({
-            building_id: allBuildings[item.building]._id,
-            cleaner_id: allCleaners[item.cleaner]._id,
-            createdAt: new Date(),
-            day: item.day
-      })
-  });
+  //     if (!allBuildings[item.building]) log('Missing building:', item.building)
+  //     if (!allCleaners[item.cleaner]) log('Missing cleaner:-' + item.cleaner + '-')
+  //     scheduleData1.push({
+  //           building_id: allBuildings[item.building]._id,
+  //           cleaner_id: allCleaners[item.cleaner]._id,
+  //           createdAt: new Date(),
+  //           day: item.day
+  //     })
+  // });
 
-  Seeder.seed('Schedules init', Schedules, {
-    data: scheduleData1
-  });
+  // Seeder.seed('Schedules init', Schedules, {
+  //   data: scheduleData1
+  // });
 
   createJobs();
 
