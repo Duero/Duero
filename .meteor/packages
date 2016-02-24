@@ -25,6 +25,7 @@ rzymek:moment-locale-sk
 percolate:synced-cron
 ongoworks:security
 percolate:migrations
+# achtan:dr-seeder
 
 # UI
 fortawesome:fontawesome
