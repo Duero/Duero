@@ -48,16 +48,13 @@ const Day = ({cleaners, date, isToday, isOverdue, onButtonClick, onReassign, onC
                         return null;
                       }
                       return <li key={item._id}>
-                        <a href="#" onClick={() => onReassign(job, item)}>{item.name}</a>
+                        <a href="#" onClick={(e) => {e.preventDefault(); onReassign(job, item);}}>{item.name}</a>
                       </li>;
                     })}
 
                     <li className="divider" />
-
-                    {
-                    (job.done == true) ? <li><a href="#" onClick={() => onCancel(job)}>Neurobené</a></li> : ''}
-                    <li><a href="#" onClick={() => onSkip(job)}>Tentokrát zrušiť</a></li>
-                    
+                    {(job.done == true) ? <li><a href="#" onClick={(e) => {e.preventDefault(); onCancel(job)}}>Neurobené</a></li> : ''}
+                    <li><a href="#" onClick={(e) => {e.preventDefault(); onSkip(job)}}>Tentokrát zrušiť</a></li>
                   </ul>
                 </div>
               }
