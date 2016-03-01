@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 
-const Day = ({cleaners, date, isToday, isOverdue, onButtonClick, onReassign, onCancel, onSkip, onAddOvertime, onCancelOvertime}) => {
+const Day = ({cleaners, viewAll, date, isToday, isOverdue, onButtonClick, onReassign, onCancel, onSkip, onAddOvertime, onCancelOvertime}) => {
 
   const dateName = isToday ? 'dnes' : date.format('D. MMM YY');
 
@@ -23,7 +23,7 @@ const Day = ({cleaners, date, isToday, isOverdue, onButtonClick, onReassign, onC
         <dl className="dl-horizontal">
           <dt>{cleaner.name}<br /><small><span className="text-muted">spolu 3:45</span></small></dt>
           <dd>
-            {cleaner.jobsForDate(date.toDate(), isToday ? undefined : false).map(job => {
+            {cleaner.jobsForDate(date.toDate(), isToday || viewAll ? undefined : false).map(job => {
               if(job.isOvertime()) {
                 return <div key={job._id} className="btn-group btn-group-lg">
                   <button className="btn btn-success" type="button">{job.title()}</button>

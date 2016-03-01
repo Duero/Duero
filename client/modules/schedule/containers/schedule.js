@@ -38,8 +38,8 @@ export const composer = ({context}, onData) => {
     days = _.values(days);
     days = _.sortBy(days, 'date');
 
-    const toggleViewText = viewAll ? 'Zobraz len aktuálne' : 'Zobraz všetko';
-    onData(null, {days, toggleViewText});
+    const toggleViewText = viewAll ? 'Zobraz len aktuálne' : 'Zobraz tento týždeň';
+    onData(null, {days, viewAll, toggleViewText});
   }
 };
 
