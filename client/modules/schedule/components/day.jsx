@@ -19,11 +19,17 @@ const Day = ({cleaners, viewAll, date, isToday, isOverdue, onButtonClick, onReas
         </span>
       }
 
+      const cleanerJobs = cleaner.jobsForDate(date.toDate(), isToday || viewAll ? undefined : false);
+      if(!cleanerJobs.length) return null;
+
+      let totalDuration = 0;
+      cleanerJobs.map(job => {totalDuration = totalDuration + job.building().duration});
+
       return <div key={cleaner._id} className="cleaner-box">
         <dl className="dl-horizontal">
-          <dt>{cleaner.name}<br /><small><span className="text-muted">spolu 3:45</span></small></dt>
+          <dt>{cleaner.name}<br /><small><span className="text-muted">{formatMinutes(totalDuration)}</span></small></dt>
           <dd>
-            {cleaner.jobsForDate(date.toDate(), isToday || viewAll ? undefined : false).map(job => {
+            {cleanerJobs.map(job => {
               if(job.isOvertime()) {
                 return <div key={job._id} className="btn-group btn-group-lg">
                   <button className="btn btn-success" type="button">{job.title()}</button>
