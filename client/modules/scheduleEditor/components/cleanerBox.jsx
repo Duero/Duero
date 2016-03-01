@@ -7,6 +7,7 @@ const CleanerBox = React.createClass({
   mixins: [SortableMixin],
 
   sortableOptions: {
+    disabled: $('html').hasClass('touch'),
     group: 'scheduleEditor',
     ref: "buildings",
     model: "buildings",
