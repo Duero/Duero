@@ -23,7 +23,7 @@ const Day = ({cleaners, viewAll, date, isToday, isOverdue, onButtonClick, onReas
       if(!cleanerJobs.length) return null;
 
       let totalDuration = 0;
-      cleanerJobs.map(job => {totalDuration = totalDuration + job.building().duration});
+      cleanerJobs.map(job => {totalDuration = totalDuration + job.estimatedDuration()});
 
       return <div key={cleaner._id} className="cleaner-box">
         <dl className="dl-horizontal">
