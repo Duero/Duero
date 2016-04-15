@@ -28,9 +28,9 @@ Meteor.publish('jobs.thisWeek', function() {
   return Jobs.find({date: {$gte: from.toDate(), $lte: to.toDate()}});
 });
 
-Meteor.publish('jobs.monthlyReport', function(month, cleanerId, buildingId) {
+Meteor.publish('jobs.monthlyReport', function(month) {
 	const monthStart = moment(month, 'YYYYMM').startOf('month').toDate();
 	const monthEnd = moment(month, 'YYYYMM').endOf('month').toDate();
 
-  return Jobs.find({cleaner_id: cleanerId, building_id: buildingId, date: {$gte: monthStart, $lte: monthEnd}, done: true});
+  return Jobs.find({date: {$gte: monthStart, $lte: monthEnd}, done: true});
 });

@@ -18,19 +18,21 @@ export const composer = ({context, cleanerId, month, buildingId}, onData) => {
     })
   }
 
-  cleanerId = cleanerId || Collections.Cleaners.findOne()._id;
+  // cleanerId = cleanerId || Collections.Cleaners.findOne()._id;
   month = month || moment().format('YYYYMM');
 
-  if(Meteor.subscribe('jobs.monthlyReport', month, cleanerId, buildingId).ready()) {
+  if(Meteor.subscribe('jobs.monthlyReport', month).ready()) {
     const monthStart = moment(month, 'YYYYMM').startOf('month').toDate();
     const monthEnd = moment(month, 'YYYYMM').endOf('month').toDate();
 
-    const jobsSelector = {cleaner_id: cleanerId, date: {$gte: monthStart, $lte: monthEnd}};
+    const jobsSelector = {date: {$gte: monthStart, $lte: monthEnd}};
 
     if (cleanerId) jobsSelector.cleaner_id = cleanerId;
     if (buildingId) jobsSelector.building_id = buildingId;
-    
+
+    log(jobsSelector)
     const jobs = Collections.Jobs.find(jobsSelector, {sort: {date: 1}}).fetch();
+
     const cleaner = Collections.Cleaners.findOne(cleanerId);
     const building = Collections.Buildings.findOne(buildingId);
 
