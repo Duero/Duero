@@ -1,6 +1,7 @@
 import {Jobs} from '/lib/collections/index';
 import {Meteor} from 'meteor/meteor';
 import {check, Match} from 'meteor/check';
+import {createJobs} from '../scheduleEditor';
 
 Meteor.methods({
   'jobs.markAllAsPaid'(cleanerId, month) {
@@ -15,5 +16,8 @@ Meteor.methods({
       {$set: {paid: true}},
       {multi: true}
     );
+  },
+  'jobs.createJobs'() {
+    createJobs();
   }
 });
