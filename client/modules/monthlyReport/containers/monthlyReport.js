@@ -2,9 +2,10 @@ import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 import MonthlyReport from '../components/monthlyReport.jsx';
 
-export const composer = ({context, cleanerId, month}, onData) => {
+export const composer = ({context, cleanerId, month, buildingId}, onData) => {
   const {Collections} = context();
   const allCleaners = Collections.Cleaners.find({}, {sort: {name: 1}});
+  const allBuildings = Collections.Buildings.find({}, {sort: {name: 1}});
 
   const monthsStart = moment("2016-01-01 0:00 +0000", "YYYY-MM-DD HH:mm Z");
   const currentMonth = moment({day: 0, hour: 0, minute: 0, second: 0});
@@ -17,15 +18,23 @@ export const composer = ({context, cleanerId, month}, onData) => {
     })
   }
 
-  cleanerId = cleanerId || Collections.Cleaners.findOne()._id;
+  // cleanerId = cleanerId || Collections.Cleaners.findOne()._id;
   month = month || moment().format('YYYYMM');
 
-  if(Meteor.subscribe('jobs.monthlyReport', month, cleanerId).ready()) {
+  if(Meteor.subscribe('jobs.monthlyReport', month).ready()) {
     const monthStart = moment(month, 'YYYYMM').startOf('month').toDate();
     const monthEnd = moment(month, 'YYYYMM').endOf('month').toDate();
 
-    const jobs = Collections.Jobs.find({cleaner_id: cleanerId, date: {$gte: monthStart, $lte: monthEnd}}, {sort: {date: 1}}).fetch();
+    const jobsSelector = {date: {$gte: monthStart, $lte: monthEnd}};
+
+    if (cleanerId) jobsSelector.cleaner_id = cleanerId;
+    if (buildingId) jobsSelector.building_id = buildingId;
+
+    log(jobsSelector)
+    const jobs = Collections.Jobs.find(jobsSelector, {sort: {date: 1}}).fetch();
+
     const cleaner = Collections.Cleaners.findOne(cleanerId);
+    const building = Collections.Buildings.findOne(buildingId);
 
     const totals = {
       duration: 0,
@@ -43,7 +52,8 @@ export const composer = ({context, cleanerId, month}, onData) => {
     totals.price = roundTo(totals.price, 2);
     totals.unpaid = roundTo(totals.unpaid, 2);
 
-    onData(null, {jobs, month, cleaner, allCleaners, allMonths, Collections, totals});
+    onData(null, {jobs, month, cleaner, allCleaners, allMonths, Collections, totals, building, allBuildings});
+
   }
 };
 
