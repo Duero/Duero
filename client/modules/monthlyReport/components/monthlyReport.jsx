@@ -47,7 +47,7 @@ const MonthlyReport = ({month, jobs, cleaner, allCleaners, allMonths, Collection
             <td>{item.title()}</td>
             <td className="text-right">{item.salary || '?'} EUR</td>
             <td className="text-right">{formatMinutes(item.duration || 0)} hod</td>
-            <td className="text-right">{item.paid ? <span className="label label-success">Uhradené</span> : ''} {(item.salary * item.duration / 60) || '?'} EUR</td>
+            <td className="text-right">{item.paid ? <span className="label label-success">Uhradené</span> : ''} {roundTo(item.salary * item.duration / 60, 2) || '?'} EUR</td>
           </tr>
         })}
       </tbody>

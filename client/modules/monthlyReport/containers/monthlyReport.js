@@ -40,6 +40,9 @@ export const composer = ({context, cleanerId, month}, onData) => {
       if (item.paid != true) totals.unpaid += thisPrice;
     });
 
+    totals.price = roundTo(totals.price, 2);
+    totals.unpaid = roundTo(totals.unpaid, 2);
+
     onData(null, {jobs, month, cleaner, allCleaners, allMonths, Collections, totals});
   }
 };
