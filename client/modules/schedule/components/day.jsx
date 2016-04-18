@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 
-
 const Day = ({cleaners, viewAll, date, isToday, isOverdue, onButtonClick, onReassign, onCancel, onSkip, onAddOvertime, onCancelOvertime}) => {
 
   const dateName = isToday ? 'dnes' : date.format('D. MMM YY');
@@ -10,14 +9,6 @@ const Day = ({cleaners, viewAll, date, isToday, isOverdue, onButtonClick, onReas
     <h1 className="text-center">{date.format('dddd')} <span className="small">{dateName}</span></h1>
 
     {cleaners.map(cleaner => {
-
-      let overtimeButtonsDom;
-      if(isToday) {
-        overtimeButtonsDom = <span>
-          <div className="btn btn-info" onClick={() => onAddOvertime(cleaner, date.toDate(), 15)}>+15 min</div>
-          <div className="btn btn-info" onClick={() => onAddOvertime(cleaner, date.toDate(), 30)}>+30 min</div>
-        </span>
-      }
 
       const cleanerJobs = cleaner.jobsForDate(date.toDate(), isToday || viewAll ? undefined : false);
       if(!cleanerJobs.length) return null;
@@ -65,7 +56,6 @@ const Day = ({cleaners, viewAll, date, isToday, isOverdue, onButtonClick, onReas
                 </div>
               }
             })}
-            {overtimeButtonsDom}
           </dd>
         </dl>
       </div>

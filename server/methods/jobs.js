@@ -17,6 +17,9 @@ Meteor.methods({
       {multi: true}
     );
   },
+  'jobs.addExtraJob'(job) {
+    Jobs.insert(job);
+  },
   'jobs.createJobs'() {
     createJobs();
   }

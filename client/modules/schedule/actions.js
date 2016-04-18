@@ -1,4 +1,12 @@
 export default {
+  addExtraJob({Meteor, FlowRouter}, job) {
+    Meteor.call('jobs.addExtraJob', job, (error) => {
+      if(error) {
+        // ???
+      }
+    })
+  },
+
   markAsDone({Meteor, FlowRouter}, job) {
     Meteor.call('schedule.markAsDone', job._id, (error) => {
       if(error) {
