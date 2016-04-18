@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-const Day = ({cleaners, viewAll, date, isToday, isOverdue, onButtonClick, onReassign, onCancel, onSkip, onAddOvertime, onCancelOvertime}) => {
+const Day = ({cleaners, viewAll, date, isToday, isOverdue, onButtonClick, onReassign, onCancel, onSkip}) => {
 
   const dateName = isToday ? 'dnes' : date.format('D. MMM YY');
 
@@ -35,12 +35,12 @@ const Day = ({cleaners, viewAll, date, isToday, isOverdue, onButtonClick, onReas
                 let dropdownClass = buttonClass + ' dropdown-toggle';
 
                 return <div key={job._id} className="btn-group btn-group-lg">
-                  <button type="button" className={buttonClass} onClick={() => onButtonClick(job)}>{job.title()}</button>
+                  <button type="button" className={buttonClass} onClick={() => onButtonClick(job)}>{job.title()} {job.description ? <small>(+{job.duration} min)</small> : ''}</button>
                   <button type="button" className={dropdownClass} data-toggle="dropdown">
                     <span className="caret" />
                   </button>
                   <ul className="dropdown-menu dropdown-menu-right">
-                    {cleaners.map(item => {
+{job.isExtra() ? '' : cleaners.map(item => {
                       if(item._id == cleaner._id) {
                         return null;
                       }
@@ -50,6 +50,7 @@ const Day = ({cleaners, viewAll, date, isToday, isOverdue, onButtonClick, onReas
                     })}
 
                     <li className="divider" />
+                    {(job.description) ? <li><a href="#"><i>{job.description}</i></a></li> : ''}
                     {(job.done == true) ? <li><a href="#" onClick={(e) => {e.preventDefault(); onCancel(job)}}>Neurobené</a></li> : ''}
                     <li><a href="#" onClick={(e) => {e.preventDefault(); onSkip(job)}}>Tentokrát zrušiť</a></li>
                   </ul>

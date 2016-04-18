@@ -12,19 +12,18 @@ export const composer = ({context}, onData) => {
   buildings = buildings.map(function(item, index) {
      return { value: item._id, label: item.name }
   })
+
+  buildings.unshift({ value: '', label: ' ~ Vyber ~' })
   
   cleaners = cleaners.map(function(item, index) {
      return { value: item._id, label: item.name }
   })
+  cleaners.unshift({ value: '', label: ' ~ Vyber ~' })
   
   onData(null, {defaultValues, buildings, cleaners});
 };
 
 export const mapper = (context, actions) => ({
-  onButtonClick: (values) => {
-    values.date = moment(values.date).toDate();
-    actions.schedule.addExtraJob(context, values);
-  },
   context: () => context
 });
 

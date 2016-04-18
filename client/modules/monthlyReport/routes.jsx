@@ -14,7 +14,7 @@ export default function (injectDeps) {
       if (cleanerId == '-') cleanerId = null;
       if (month == '-') month = null;
       if (buildingId == '-') buildingId = null;
-      log(cleanerId, month, buildingId)
+
       mount(MainLayoutCtx, {
         content: () => (<MonthlyReport cleanerId={cleanerId} month={month} buildingId={buildingId}/>)
       });

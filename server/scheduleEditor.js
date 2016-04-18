@@ -25,6 +25,17 @@ Meteor.methods({
     Schedules.insert(data);
 
     Buildings.update(parameters.buildingId, {$set: {assigned: true}});
+  },
+
+  'scheduleEditor.unassign'(parameters) {
+    check(parameters, {
+      buildingId: String
+    });
+
+    // un-assign building
+    Schedules.remove({building_id: parameters.buildingId});
+
+    Buildings.update(parameters.buildingId, {$set: {assigned: false}});
   }
 
 });

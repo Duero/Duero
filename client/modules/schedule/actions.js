@@ -1,12 +1,4 @@
 export default {
-  addExtraJob({Meteor, FlowRouter}, job) {
-    Meteor.call('jobs.addExtraJob', job, (error) => {
-      if(error) {
-        // ???
-      }
-    })
-  },
-
   markAsDone({Meteor, FlowRouter}, job) {
     Meteor.call('schedule.markAsDone', job._id, (error) => {
       if(error) {
@@ -39,21 +31,5 @@ export default {
       }
     });
     return false;
-  },
-
-  addOvertime({Meteor, FlowRouter}, cleaner, date, overtime) {
-    Meteor.call('schedule.addOvertime', cleaner._id, date, overtime, (error) => {
-      if(error) {
-        // ???
-      }
-    })
-  },
-
-  cancelOvertime({Meteor, FlowRouter}, cleaner, date) {
-    Meteor.call('schedule.cancelOvertime', cleaner._id, date, (error) => {
-      if(error) {
-        // ???
-      }
-    })
   }
 };

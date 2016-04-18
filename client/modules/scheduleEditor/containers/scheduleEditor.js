@@ -11,6 +11,7 @@ export const composer = ({context}, onData) => {
 
 export const mapper = (context, actions) => ({
   onAssign: actions.scheduleEditor.assign,
+  onUnassign: actions.scheduleEditor.unassign,
   context: () => context
 });
 

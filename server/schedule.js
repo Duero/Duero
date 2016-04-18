@@ -48,34 +48,5 @@ Meteor.methods({
   'schedule.skip'(jobId) {
     check(jobId, String);
     Jobs.remove(jobId);
-  },
-
-  'schedule.addOvertime'(cleanerId, date, overtime) {
-    check(cleanerId, String);
-    check(date, Date);
-    check(overtime, Number);
-
-    const overtimeJob = Jobs.findOne({cleaner_id: cleanerId, date: date, building_id: null});
-    const cleaner = Cleaners.findOne(cleanerId);
-
-    if(overtimeJob) {
-      Jobs.update(overtimeJob._id, {$inc: {duration: overtime}});
-    } else {
-      Jobs.insert({
-        cleaner_id: cleanerId,
-        building_id: null,
-        date: date,
-        done: true,
-        salary: cleaner.salary,
-        duration: overtime
-      });
-    }
-  },
-
-  'schedule.cancelOvertime'(cleanerId, date) {
-    check(cleanerId, String);
-    check(date, Date);
-
-    Jobs.remove({cleaner_id: cleanerId, date: date, building_id: null});
   }
 });

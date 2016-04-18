@@ -30,16 +30,24 @@ const CleanerBox = React.createClass({
     });
   },
 
+  handleUnassign(event) {
+    let id = $(event.target).attr('data-id');
+    this.props.onUnassign({
+      buildingId: id
+    });
+  },
+
   render() {
     let buildingsDom;
 
     const cleaner = this.props.cleaner;
+
     const buildings = this.state.buildings;
     let totalTime = 0;
     if (buildings.length) {
       buildingsDom = buildings.map(item => {
         totalTime +=item.duration;
-        return <button key={item._id} className="btn btn-default btn-lg" type="button" data-id={item._id}>{item.name}</button>;
+        return <button key={item._id} className="btn btn-default btn-lg" type="button" data-id={item._id} onDoubleClick={this.handleUnassign}>{item.name}</button>;
       });
     } else {
       buildingsDom =

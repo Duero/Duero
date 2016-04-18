@@ -51,6 +51,7 @@ const MonthlyReport = ({month, jobs, cleaner, allCleaners, allMonths, Collection
           <th>Dátum</th>
           <th>Upratovačka</th>
           <th>Objekt</th>
+          <th>Popis</th>
           <th className="text-right">Hodinovka</th>
           <th className="text-right">Hodiny</th>
           <th className="text-right">Suma</th>
@@ -62,6 +63,7 @@ const MonthlyReport = ({month, jobs, cleaner, allCleaners, allMonths, Collection
             <td>{moment(item.date).format('D. MMMM YYYY')}</td>
             <td>{item.cleaner().name}</td>
             <td>{item.title()}</td>
+            <td>{item.description}</td>
             <td className="text-right">{item.salary || '?'} EUR</td>
             <td className="text-right">{formatMinutes(item.duration || 0)} hod</td>
             <td className="text-right">{item.paid ? <span className="label label-success">Uhradené</span> : ''} {roundTo(item.salary * item.duration / 60, 2) || '?'} EUR</td>
@@ -71,6 +73,7 @@ const MonthlyReport = ({month, jobs, cleaner, allCleaners, allMonths, Collection
       <tfoot>
         <tr className="danger" style={{fontWeight: 'bold'}}>
           <td>Spolu:</td>
+          <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td className="text-right"></td>

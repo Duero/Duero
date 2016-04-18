@@ -30,7 +30,6 @@ export const composer = ({context, cleanerId, month, buildingId}, onData) => {
     if (cleanerId) jobsSelector.cleaner_id = cleanerId;
     if (buildingId) jobsSelector.building_id = buildingId;
 
-    log(jobsSelector)
     const jobs = Collections.Jobs.find(jobsSelector, {sort: {date: 1}}).fetch();
 
     const cleaner = Collections.Cleaners.findOne(cleanerId);
