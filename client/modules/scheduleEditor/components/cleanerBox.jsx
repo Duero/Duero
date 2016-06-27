@@ -46,7 +46,8 @@ const CleanerBox = React.createClass({
     let totalTime = 0;
     if (buildings.length) {
       buildingsDom = buildings.map(item => {
-        totalTime +=item.duration;
+        if (!item) return '';
+        totalTime += item.duration;
         return <button key={item._id} className="btn btn-default btn-lg" type="button" data-id={item._id} onDoubleClick={this.handleUnassign}>{item.name}</button>;
       });
     } else {
