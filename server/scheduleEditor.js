@@ -47,22 +47,23 @@ Meteor.methods({
 
 export function createJobs() {
 
-  const monday = moment({ hour: 0, minute: 0, second: 0 }).weekday(0);
-  const sunday = moment({ hour: 0, minute: 0, second: 0 }).weekday(6);
-
-  const selector = {
-    $and: [
-      {date: {$gte: monday.toDate()}},
-      {date: {$lte: sunday.toDate()}}
-    ]
-  };
-
-  if(Jobs.find(selector).count()) {
-    log('This week already scheduled!');
-    return null;
-  }
+  // const monday = moment({ hour: 0, minute: 0, second: 0 }).weekday(0);
+  // const sunday = moment({ hour: 0, minute: 0, second: 0 }).weekday(6);
+  //
+  // const selector = {
+  //   $and: [
+  //     {date: {$gte: monday.toDate()}},
+  //     {date: {$lte: sunday.toDate()}}
+  //   ]
+  // };
+  //
+  // if(Jobs.find(selector).count()) {
+  //   log('This week already scheduled!');
+  //   return null;
+  // }
 
   const newJobs = [];
+  let skippedJobs = 0;
   Weekday.enumValues.map(day => {
     const date = day.date();
     const schedules = Schedules.find({day: day.value}).fetch();
@@ -74,10 +75,15 @@ export function createJobs() {
         date: date.toDate()
       };
 
-      newJobs.push(Jobs.insert(data));
+      if(Jobs.find(data).count()) {
+        skippedJobs++;
+      } else {
+        newJobs.push(Jobs.insert(data));
+      }
     });
 
   });
 
-  log(newJobs.length + ' new Jobs created');
+  log(`${newJobs.length} new Jobs created (${skippedJobs} Jobs skipped)`);
 }
+
