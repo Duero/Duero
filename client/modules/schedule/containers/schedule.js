@@ -10,7 +10,7 @@ export const composer = ({context}, onData) => {
 
   const viewAll = LocalState.get('SCHEDULE_VIEW_ALL');
   const today = moment({ hour: 0, minute: 0, second: 0 });
-  const getDayKey = (date) => (date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay());
+  const getDayKey = (date) => (date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate());
   if(Meteor.subscribe('jobs.todo', viewAll).ready()) {
     let days = {};
     let to = null;

@@ -12,7 +12,6 @@ const ExtraJobModal = React.createClass({
     return { showModal: false };
   },
   render() {
-    log('som v render')
     const icon = this.props.icon ? <i className={this.props.icon} /> : null;
 
     let defaultValues = this.props.defaultValues;
