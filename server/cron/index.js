@@ -5,7 +5,7 @@ SyncedCron.add({
   name: 'Schedule jobs',
   schedule: function(parser) {
     // parser is a later.parse object
-    return parser.text('every 5 min');
+    return parser.text('at 1:00 am on Monday');
   },
   job: function() {
     createJobs();
