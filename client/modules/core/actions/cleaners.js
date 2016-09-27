@@ -11,7 +11,12 @@ export default {
 
   },
 
-  setActive({Collections}, id, active = true) {
+  setActive({Meteor, Collections}, id, active = true) {
     Collections.Cleaners.update(id, {$set: {active}});
+    if(!active) {
+      Meteor.call('schedule.cleanup', {cleaner_id: id}, (error) => {
+        if(error) console.error(error);
+      })
+    }
   }
 };

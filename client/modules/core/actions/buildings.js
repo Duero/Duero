@@ -14,5 +14,10 @@ export default {
 
   setActive({Collections}, id, active = true) {
     Collections.Buildings.update(id, {$set: {active}});
+    if(!active) {
+      Meteor.call('schedule.cleanup', {building_id: id}, (error) => {
+        if(error) console.error(error);
+      })
+    }
   }
 };

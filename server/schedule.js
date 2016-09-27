@@ -48,5 +48,13 @@ Meteor.methods({
   'schedule.skip'(jobId) {
     check(jobId, String);
     Jobs.remove(jobId);
-  }
+  },
+
+  'schedule.cleanup'(selector) {
+    selector.done = false;
+    log('Jobs to delete: ', Jobs.find(selector).count(), ', selector: ', selector);
+    Jobs.find(selector).map(job => {
+      Jobs.remove(job._id);
+    })
+  },
 });

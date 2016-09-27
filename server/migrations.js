@@ -1,3 +1,4 @@
+import {Meteor} from 'meteor/meteor';
 import {Buildings, Cleaners, Schedules, Jobs} from '/lib/collections/index';
 
 
@@ -12,6 +13,21 @@ Migrations.add({
   up: function() {
     Buildings.update({}, {$set: {active: true}}, {multi: true});
     Cleaners.update({}, {$set: {active: true}}, {multi: true});
+  }
+});
+
+
+Migrations.add({
+  version: 2,
+  name: 'Cleanup jobs',
+  up: function() {
+    Buildings.find({active: false}).map(b => {
+      Meteor.call('schedule.cleanup', {building_id: b._id});
+    });
+
+    Cleaners.find({active: false}).map(b => {
+      Meteor.call('schedule.cleanup', {cleaner_id: b._id});
+    });
   }
 });
 
