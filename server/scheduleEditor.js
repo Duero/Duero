@@ -36,6 +36,10 @@ Meteor.methods({
     Schedules.remove({building_id: parameters.buildingId});
 
     Buildings.update(parameters.buildingId, {$set: {assigned: false}});
+  },
+
+  'scheduleEditor.createJobs'(parameters) {
+    createJobs();
   }
 
 });
