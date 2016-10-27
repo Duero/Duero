@@ -19,6 +19,13 @@ Migrations.add({
 
 Migrations.add({
   version: 2,
+  name: 'blank',
+  up: function() {
+  }
+});
+
+Migrations.add({
+  version: 3,
   name: 'Cleanup jobs',
   up: function() {
     Buildings.find({active: false}).map(b => {

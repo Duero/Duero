@@ -291,6 +291,6 @@ Meteor.startup(function() {
   //   data: scheduleData1
   // });
 
-  createJobs();
+  // createJobs();
 
 });
