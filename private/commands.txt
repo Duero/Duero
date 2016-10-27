@@ -1,5 +1,4 @@
 cd /var/www/duero
-forever stop duero
 rm -rf bundle-copy-old
 mv bundle-copy bundle-copy-old
 cp -r bundle bundle-copy
@@ -12,8 +11,6 @@ forever stop duero
 truncate /var/www/.forever/duero.log --size 0
 METEOR_SETTINGS='{"private": {},"public" : {}}' PORT=3005 ROOT_URL=http://www.dueroclean.sk MONGO_URL=mongodb://192.168.4.62:27017/duero MONGO_OPLOG_URL=mongodb://192.168.4.62:27017/local LC_ALL="en_GB.UTF-8" forever -a --uid "duero" start bundle/main.js
 tail -f -n 200 /var/www/.forever/duero.log
-
-
 
 
 cd /var/www/duero
