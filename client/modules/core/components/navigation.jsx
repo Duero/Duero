@@ -17,11 +17,11 @@ const Navigation = () => {
 
       <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul className="nav navbar-nav">
-          <li><a href="/">Dnes</a></li>
-          <li><a href="/cleaners">Upratovačky</a></li>
-          <li><a href="/buildings">Objekty</a></li>
-          <li><a href="/schedule-editor">Naplánovať rozvrh</a></li>
-          <li><a href="/monthly-report">Report mesačný</a></li>
+          <li><a href="/"><i className="fa fa-clock-o"/> Dnes</a></li>
+          <li><a href="/cleaners"><i className="fa fa-female"/> Upratovačky</a></li>
+          <li><a href="/buildings"><i className="fa fa-building-o"/> Objekty</a></li>
+          <li><a href="/schedule-editor"><i className="fa fa-calendar"/> Naplánovať rozvrh</a></li>
+          <li><a href="/monthly-report"><i className="fa fa-eur"/> Report mesačný</a></li>
         </ul>
       </div>
     </div>

@@ -12,10 +12,17 @@ const UnassignedBuildings = React.createClass({
     sort: false
   },
 
-  getInitialState: function() {
+  getInitialState: function () {
     return {
       items: this.props.buildings
     };
+  },
+
+  handleAdd(event) {
+    const id = event.item.dataset.id;
+    this.props.onUnassign({
+      buildingId: id
+    });
   },
 
   handleSort: function (event) {
@@ -27,7 +34,7 @@ const UnassignedBuildings = React.createClass({
       <div className="panel-heading">
         <h3 className="panel-title">Nezaradené objekty</h3>
       </div>
-      <div className="panel-body" ref="buildings">
+      <div className="panel-body" ref="buildings" style={{ height: 'calc(100% - 108px)', overflow: 'auto', position: 'fixed' }}>
         {this.state.items.map(item => {
           return <div key={item._id} className="btn btn-default btn-block btn-lg" data-id={item._id}>
             {item.name}

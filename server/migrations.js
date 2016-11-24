@@ -38,3 +38,25 @@ Migrations.add({
   }
 });
 
+
+Migrations.add({
+  version: 4,
+  name: 'Reactivate hidden buildings',
+  up: function() {
+    Buildings.find({assigned: true}).map(b => {
+      if(Schedules.find({building_id: b._id}).count() == 0) {
+        Buildings.update(b._id, {$set: {assigned: false}});
+      }
+    });
+
+  }
+});
+
+Migrations.add({
+  version: 5,
+  name: 'cleanup',
+  up: function() {
+    Meteor.call('schedule.cleanupAll');
+  }
+});
+

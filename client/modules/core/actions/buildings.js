@@ -17,7 +17,10 @@ export default {
     if(!active) {
       Meteor.call('schedule.cleanup', {building_id: id}, (error) => {
         if(error) console.error(error);
-      })
+      });
+      Meteor.call('scheduleEditor.unassign', {buildingId: id}, (error) => {
+        if(error) console.error(error);
+      });
     }
   }
 };

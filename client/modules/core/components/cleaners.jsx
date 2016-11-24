@@ -5,7 +5,7 @@ const Cleaners = ({items, onSetActive}) => {
   return <div>
     <a className="btn btn-success btn-lg pull-right" href="/cleaners/new">Pridať novú upratovačku</a>
     <h1>Upratovačky</h1>
-    <table className="table">
+    <table className="table table-hover">
       <thead>
         <tr>
           <th>Meno</th>
@@ -18,7 +18,7 @@ const Cleaners = ({items, onSetActive}) => {
           let activeButton;
           let rowClass;
           if(item.active) {
-            activeButton = <div className="btn btn-danger" onClick={() => onSetActive(item._id, false)}>zmazať</div>
+            activeButton = <div className="btn btn-danger" onClick={() => onSetActive(item._id, false)}>deaktivovať</div>
           } else {
             rowClass = 'bg-danger';
             activeButton = <div className="btn btn-success" onClick={() => onSetActive(item._id, true)}>aktivovať</div>

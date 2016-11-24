@@ -1,6 +1,6 @@
-import {Buildings, Cleaners, Schedules, Jobs} from '/lib/collections/index';
-import {Meteor} from 'meteor/meteor';
-import {check} from 'meteor/check';
+import { Buildings, Cleaners, Schedules, Jobs } from '/lib/collections/index';
+import { Meteor } from 'meteor/meteor';
+import { check } from 'meteor/check';
 
 Meteor.methods({
   'schedule.markAsDone'(jobId) {
@@ -18,7 +18,7 @@ Meteor.methods({
       duration: building.duration
     };
     log(update)
-    Jobs.update(jobId, {$set: update});
+    Jobs.update(jobId, { $set: update });
   },
 
   'schedule.reassign'(jobId, cleanerId) {
@@ -31,18 +31,20 @@ Meteor.methods({
     const cleaner = Cleaners.findOne(cleanerId);
     const building = Buildings.findOne(job.building_id);
 
-    Jobs.update(jobId, {$set: {
-      cleaner_id: cleanerId,
-      date: today.toDate(),
-      salary: cleaner.salary,
-      duration: building.duration,
-      done: true
-    }});
+    Jobs.update(jobId, {
+      $set: {
+        cleaner_id: cleanerId,
+        date: today.toDate(),
+        salary: cleaner.salary,
+        duration: building.duration,
+        done: true
+      }
+    });
   },
 
   'schedule.cancel'(jobId) {
     check(jobId, String);
-    Jobs.update(jobId, {$set: {done: false}});
+    Jobs.update(jobId, { $set: { done: false } });
   },
 
   'schedule.skip'(jobId) {
@@ -56,5 +58,15 @@ Meteor.methods({
     Jobs.find(selector).map(job => {
       Jobs.remove(job._id);
     })
+  },
+
+  'schedule.cleanupAll'() {
+    Buildings.find({ active: false }).map(b => {
+      Meteor.call('schedule.cleanup', { building_id: b._id });
+    });
+
+    Cleaners.find({ active: false }).map(b => {
+      Meteor.call('schedule.cleanup', { cleaner_id: b._id });
+    });
   },
 });

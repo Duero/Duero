@@ -5,7 +5,7 @@ const Buildings = ({items, onSetActive}) => {
   return <div>
     <a className="btn btn-success btn-lg pull-right" href="/buildings/new">Pridať nový objekt</a>
     <h1>Objekty</h1>
-    <table className="table">
+    <table className="table table-hover">
       <thead>
         <tr>
           <th>Adresa</th>
@@ -19,7 +19,7 @@ const Buildings = ({items, onSetActive}) => {
           let activeButton;
           let rowClass;
           if(item.active) {
-            activeButton = <div className="btn btn-danger" onClick={() => onSetActive(item._id, false)}>zmazať</div>
+            activeButton = <div className="btn btn-danger" onClick={() => onSetActive(item._id, false)}>deaktivovať</div>
           } else {
             rowClass = 'bg-danger';
             activeButton = <div className="btn btn-success" onClick={() => onSetActive(item._id, true)}>aktivovať</div>

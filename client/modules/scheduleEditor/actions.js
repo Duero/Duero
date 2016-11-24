@@ -9,7 +9,7 @@ export default {
   unassign({Meteor, FlowRouter}, parameters) {
     Meteor.call('scheduleEditor.unassign', parameters, (error) => {
       if(error) {
-        // ???
+        console.error(error);
       }
     })
   }
