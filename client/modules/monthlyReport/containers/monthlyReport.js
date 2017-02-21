@@ -2,7 +2,7 @@ import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 import MonthlyReport from '../components/monthlyReport.jsx';
 
-export const composer = ({context, cleanerId, month, buildingId}, onData) => {
+export const composer = ({context, cleanerId, month, buildingId, search}, onData) => {
   const {Collections} = context();
   const allCleaners = Collections.Cleaners.find({}, {sort: {name: 1}});
   const allBuildings = Collections.Buildings.find({}, {sort: {name: 1}});
@@ -29,6 +29,7 @@ export const composer = ({context, cleanerId, month, buildingId}, onData) => {
 
     if (cleanerId) jobsSelector.cleaner_id = cleanerId;
     if (buildingId) jobsSelector.building_id = buildingId;
+    if (search) jobsSelector.description = {$regex : `.*${search}.*`};
 
     const jobs = Collections.Jobs.find(jobsSelector, {sort: {date: 1}}).fetch();
 
@@ -51,13 +52,19 @@ export const composer = ({context, cleanerId, month, buildingId}, onData) => {
     totals.price = roundTo(totals.price, 2);
     totals.unpaid = roundTo(totals.unpaid, 2);
 
-    onData(null, {jobs, month, cleaner, allCleaners, allMonths, Collections, totals, building, allBuildings});
+    onData(null, {jobs, search, month, cleaner, allCleaners, allMonths, Collections, totals, building, allBuildings});
 
   }
 };
 
 export const mapper = (context, actions) => ({
   onMarkAllAsPaid: actions.monthlyReport.markAllAsPaid,
+  handleSearch: () => {
+    const route = context.FlowRouter._current;
+    const newSearch = prompt("Filtrovat popis", route.params.search);
+
+    context.FlowRouter.setParams({search: newSearch});
+  },
   context: () => context
 });
 

@@ -8,15 +8,16 @@ import MonthlyReport from '/client/modules/monthlyReport/containers/monthlyRepor
 export default function (injectDeps) {
   const MainLayoutCtx = injectDeps(MainLayout);
 
-  FlowRouter.route('/monthly-report/:cleanerId?/:month?/:buildingId?', {
+  FlowRouter.route('/monthly-report/:cleanerId?/:month?/:buildingId?/:search?', {
     name: 'monthlyReport',
-    action({cleanerId, month, buildingId}) {
+    action({cleanerId, month, buildingId, search}) {
       if (cleanerId == '-') cleanerId = null;
       if (month == '-') month = null;
       if (buildingId == '-') buildingId = null;
+      if (search == '-') search = null;
 
       mount(MainLayoutCtx, {
-        content: () => (<MonthlyReport cleanerId={cleanerId} month={month} buildingId={buildingId}/>)
+        content: () => (<MonthlyReport cleanerId={cleanerId} month={month} buildingId={buildingId} search={search}/>)
       });
     }
   });

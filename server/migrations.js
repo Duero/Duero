@@ -60,3 +60,10 @@ Migrations.add({
   }
 });
 
+Migrations.add({
+  version: 6,
+  up: function() {
+    Meteor.call('schedule.cleanupAll');
+  }
+});
+
