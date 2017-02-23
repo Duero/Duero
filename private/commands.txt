@@ -1,7 +1,6 @@
 cd /var/www/duero
 rm -rf bundle-copy-old
-mv bundle-copy bundle-copy-old
-cp -r bundle bundle-copy
+rm -rf bundle-copy
 rm -rf bundle
 tar xfz duero.tar.gz -C /var/www/duero
 cd bundle/programs/server
