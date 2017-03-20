@@ -7,7 +7,7 @@ const MonthlyReport = ({month, jobs, cleaner, allCleaners, allMonths, Collection
   const thisBuilding = building ? Collections.Buildings.findOne(building._id) || {} : {};
 
 
-  let currentDay, daySum;
+  let currentDay, daySum = {duration: 0, price: 0};
 
   const daySumRow = (currentDay, daySum) => {
     return <tr className="info" key={`${currentDay}_sum`}>
@@ -29,7 +29,6 @@ const MonthlyReport = ({month, jobs, cleaner, allCleaners, allMonths, Collection
 
       if(!currentDay) {
         currentDay = date;
-        daySum = {duration: 0, price: 0}
       }
 
       if(currentDay !== date) {
