@@ -42,7 +42,7 @@ const MonthlyReport = ({month, jobs, cleaner, allCleaners, allMonths, Collection
           <td>{date}</td>
           <td>{item.cleaner().name}</td>
           <td>{item.title()}</td>
-          <td>{item.description}</td>
+          <td>{item.bigCleaning ? <span className="small">Velké upratovanie</span> : null} {item.description}</td>
           <td className="text-right">{item.salary || '?'} EUR</td>
           <td className="text-right">{formatMinutes(item.duration || 0)} hod</td>
           <td className="text-right">{item.paid ? <span className="label label-success">Uhradené</span> : ''} {price || '?'} EUR</td>

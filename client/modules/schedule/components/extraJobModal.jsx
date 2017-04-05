@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import {Modal} from 'react-bootstrap';
 
 import Formsy from 'formsy-react';
-import {Input, Textarea, Select} from 'formsy-react-components';
+import {Input, Textarea, Select, Checkbox} from 'formsy-react-components';
 
 
 const ExtraJobModal = React.createClass({
@@ -29,21 +29,22 @@ const ExtraJobModal = React.createClass({
           <Modal.Title>Nová extra práca</Modal.Title>
         </Modal.Header>
     		<Formsy.Form onSubmit={this.handleSubmit}>
-    	        <Modal.Body>
-    			      <Input name="date" type="date" label="Dátum" value={defaultValues.date} />
-    			      <Input name="description" type="text" label="Popis" value={defaultValues.description} />
-    			      <span onClick={this.handleGroupClick}>
-    			      	<Input name="duration" type="number" label="Trvanie v min." value={defaultValues.duration} addonBefore="-15 min" addonAfter="+15 min" ref={this.saveDurationInput}/>
-    			      </span>
+          <Modal.Body>
+            <Input name="date" type="date" label="Dátum" value={defaultValues.date} />
+            <Checkbox name="bigCleaning" label="Velké upratovanie (okná)" />
+            <Input name="description" type="text" label="Popis" value={defaultValues.description} />
+            <span onClick={this.handleGroupClick}>
+              <Input name="duration" type="number" label="Trvanie v min." value={defaultValues.duration} addonBefore="-15 min" addonAfter="+15 min" ref={this.saveDurationInput}/>
+            </span>
 
-    			      <Select name="building_id" label="Objekt" value={defaultValues.buildingId} options={this.props.buildings}/>
-    			      <Select name="cleaner_id" label="Upratovačka" value={defaultValues.cleanerId} options={this.props.cleaners}/>
+            <Select name="building_id" label="Objekt" value={defaultValues.buildingId} options={this.props.buildings}/>
+            <Select name="cleaner_id" label="Upratovačka" value={defaultValues.cleanerId} options={this.props.cleaners}/>
 
-    	        </Modal.Body>
-    	        <Modal.Footer>
-    	          <button className="btn btn-default" onClick={this.handleClose}>Close</button>
-    	          <button className="btn btn-primary" type="submit">Pridaj</button>
-    	        </Modal.Footer>
+          </Modal.Body>
+          <Modal.Footer>
+            <button className="btn btn-default" onClick={this.handleClose}>Close</button>
+            <button className="btn btn-primary" type="submit">Pridaj</button>
+          </Modal.Footer>
     		</Formsy.Form>
       </Modal>
     </span>

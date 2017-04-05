@@ -1,4 +1,4 @@
-import {Jobs, Cleaners} from '/lib/collections/index';
+import {Jobs, Cleaners, Buildings} from '/lib/collections/index';
 import {Meteor} from 'meteor/meteor';
 import {check, Match} from 'meteor/check';
 import {createJobs} from '../scheduleEditor';
@@ -23,13 +23,15 @@ Meteor.methods({
     check(job.building_id, String);
     check(job.duration, Number);
     check(job.description, String);
+    check(job.bigCleaning, Boolean);
     check(job.date, Date);
 
-    job.salary = Cleaners.findOne(job.cleaner_id).salary
+    job.salary = Cleaners.findOne(job.cleaner_id).salary;
     job.done = true;
 
     var newId = Jobs.insert(job);
     log(newId)
+    Buildings.update(job.building_id, {$set: {bigCleaning: new Date}});
   },
   'jobs.createJobs'() {
     createJobs();

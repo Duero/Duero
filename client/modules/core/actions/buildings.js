@@ -22,9 +22,5 @@ export default {
         if(error) console.error(error);
       });
     }
-  },
-
-  bigCleaning({Collections}, id) {
-    Collections.Buildings.update(id, {$set: {bigCleaning: new Date}});
-  },
+  }
 };
