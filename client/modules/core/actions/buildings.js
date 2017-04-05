@@ -12,7 +12,7 @@ export default {
 
   },
 
-  setActive({Collections}, id, active = true) {
+  setActive({Collections, Meteor}, id, active = true) {
     Collections.Buildings.update(id, {$set: {active}});
     if(!active) {
       Meteor.call('schedule.cleanup', {building_id: id}, (error) => {
@@ -22,5 +22,9 @@ export default {
         if(error) console.error(error);
       });
     }
-  }
+  },
+
+  bigCleaning({Collections}, id) {
+    Collections.Buildings.update(id, {$set: {bigCleaning: new Date}});
+  },
 };

@@ -10,6 +10,7 @@ export const composer = ({context}, onData) => {
 
 export const mapper = (context, actions) => ({
   onSetActive: actions.buildings.setActive,
+  onBigCleaning: actions.buildings.bigCleaning,
   context: () => context
 });
 
