@@ -25,6 +25,7 @@ const Navigation = () => {
           <li><a href="/buildings"><i className="fa fa-building-o"/> Objekty</a></li>
           <li><a href={`/schedule-editor`}><i className="fa fa-calendar"/> Naplánovať rozvrh</a></li>
           <li><a href={`/monthly-report/-/${currentMonth}/-`}><i className="fa fa-eur"/> Report mesačný</a></li>
+          <li><a href="http://taskee.com/" target="_blank"><i className="fa fa-check-square-o"/> Taskee</a></li>
         </ul>
       </div>
     </div>
