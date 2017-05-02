@@ -29,9 +29,10 @@ Meteor.methods({
     job.salary = Cleaners.findOne(job.cleaner_id).salary;
     job.done = true;
 
-    var newId = Jobs.insert(job);
-    log(newId)
-    Buildings.update(job.building_id, {$set: {bigCleaning: new Date}});
+    Jobs.insert(job);
+    if(job.bigCleaning) {
+      Buildings.update(job.building_id, {$set: {bigCleaning: new Date}});
+    }
   },
   'jobs.createJobs'() {
     createJobs();

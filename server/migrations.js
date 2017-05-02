@@ -67,3 +67,18 @@ Migrations.add({
   }
 });
 
+Migrations.add({
+  version: 7,
+  up: function() {
+    Buildings.find({bigCleaning: {$exists: true}}).map(b => {
+      Buildings.update(b._id, {$unset: {bigCleaning: ''}});
+      console.log('unset: ', b.id)
+    });
+
+    Jobs.find({bigCleaning: true}).map(j => {
+      Buildings.update(j.building_id, {$set: {bigCleaning: j.date}})
+      console.log('set: ', j.building_id)
+    })
+  }
+});
+
