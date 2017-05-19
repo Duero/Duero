@@ -4,7 +4,7 @@ import MonthlyReport from '../components/monthlyReport.jsx';
 
 export const composer = ({context, cleanerId, month, buildingId, search}, onData) => {
   const {Collections} = context();
-  const allCleaners = Collections.Cleaners.find({}, {sort: {name: 1}});
+  const allCleaners = Collections.Cleaners.find({}, {sort: {active: -1, name: 1}});
   const allBuildings = Collections.Buildings.find({}, {sort: {name: 1}});
 
   const monthsStart = moment("2016-01-01 0:00 +0000", "YYYY-MM-DD HH:mm Z");

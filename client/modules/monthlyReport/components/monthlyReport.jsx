@@ -64,8 +64,9 @@ const MonthlyReport = ({month, jobs, cleaner, allCleaners, allMonths, Collection
       </button>
       <ul className="dropdown-menu dropdown-menu-right">
         <li key=''><a href={`/monthly-report/-/${thisMonth.format('YYYYMM')}/${thisBuilding._id || '-'}`}>~ Všetky upratovačky ~</a></li>
-       {allCleaners.map(item => {
-          return <li key={item._id}><a href={`/monthly-report/${item._id}/${thisMonth.format('YYYYMM')}/${thisBuilding._id || '-'}`}>{item.name}</a></li>
+       {allCleaners
+         .map(item => {
+          return <li className={item.active ? '' : 'bg-danger'} key={item._id}><a href={`/monthly-report/${item._id}/${thisMonth.format('YYYYMM')}/${thisBuilding._id || '-'}`}>{item.name}</a></li>
         })}
       </ul>
     </div>
