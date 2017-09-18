@@ -1,11 +1,52 @@
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
+import {map, orderBy, endsWith} from 'lodash';
 
 import MonthlyReport from '../components/monthlyReport.jsx';
 
+const toUrl = string => string.split('/').map(encodeURI).join('~');
+const fromUrl = string => string.split('~').map(decodeURI).join('/');
+const fakeEntity = (slug) => ({
+  fake: true,
+  active: true,
+  _id: toUrl(slug),
+  name: slug + ' *'
+});
+
+const joinNames = list => {
+  const bucket = {};
+  list.forEach(row => {
+    const name = row.name || '';
+    if(name.includes('/')) {
+      const nameParts = name.split('/');
+      nameParts.pop();
+      nameParts.reduce((accumulator, currentValue) => {
+        accumulator += currentValue + '/';
+
+        bucket[accumulator] = true;
+        return accumulator;
+      }, '');
+    }
+  });
+
+  return bucket;
+};
+
 export const composer = ({context, cleanerId, month, buildingId, search}, onData) => {
+  cleanerId = cleanerId ? fromUrl(cleanerId) : null;
+  buildingId = buildingId ? fromUrl(buildingId) : null;
   const {Collections} = context();
-  const allCleaners = Collections.Cleaners.find({}, {sort: {active: -1, name: 1}});
-  const allBuildings = Collections.Buildings.find({}, {sort: {name: 1}});
+
+  // ---- cleaners -----
+  const cleaners = Collections.Cleaners.find({}, {sort: {active: -1, name: 1}}).fetch();
+  const fakeCleaners = joinNames(cleaners);
+  map(fakeCleaners, (_, slug) => cleaners.push(fakeEntity(slug)));
+  const allCleaners = orderBy(cleaners, 'name');
+
+  // ---- buildings -----
+  const buildings = Collections.Buildings.find({}, {sort: {active: -1, name: 1}}).fetch();
+  const fakeBuildings = joinNames(buildings);
+  map(fakeBuildings, (_, slug) => buildings.push(fakeEntity(slug)));
+  const allBuildings = orderBy(buildings, 'name');
 
   const monthsStart = moment("2016-01-01 0:00 +0000", "YYYY-MM-DD HH:mm Z");
   const currentMonth = moment({day: 0, hour: 0, minute: 0, second: 0});
@@ -27,14 +68,26 @@ export const composer = ({context, cleanerId, month, buildingId, search}, onData
 
     const jobsSelector = {date: {$gte: monthStart, $lte: monthEnd}};
 
-    if (cleanerId) jobsSelector.cleaner_id = cleanerId;
-    if (buildingId) jobsSelector.building_id = buildingId;
+    if (cleanerId) {
+      if(endsWith(cleanerId, '/')) {
+        const group = Collections.Cleaners.find({name: {$regex: cleanerId + '.*'}}).fetch();
+        jobsSelector.cleaner_id = {$in: group.map(v => v._id)}
+      } else jobsSelector.cleaner_id = cleanerId;
+    }
+    if (buildingId) {
+      if(endsWith(buildingId, '/')) {
+        const group = Collections.Buildings.find({name: {$regex: buildingId + '.*'}}).fetch();
+        jobsSelector.building_id = {$in: group.map(v => v._id)}
+      } else jobsSelector.building_id = buildingId;
+    }
+
     if (search) jobsSelector.description = {$regex : `.*${search}.*`};
 
+    console.log(jobsSelector)
     const jobs = Collections.Jobs.find(jobsSelector, {sort: {date: 1}}).fetch();
 
-    const cleaner = Collections.Cleaners.findOne(cleanerId);
-    const building = Collections.Buildings.findOne(buildingId);
+    const cleaner = endsWith(cleanerId, '/') ? fakeEntity(cleanerId) : Collections.Cleaners.findOne(cleanerId) || {};
+    const building = endsWith(buildingId, '/') ? fakeEntity(buildingId) : Collections.Buildings.findOne(buildingId) || {};
 
     const totals = {
       duration: 0,

@@ -3,8 +3,8 @@ import React from 'react';
 
 const MonthlyReport = ({month, jobs, cleaner, allCleaners, allMonths, Collections, totals, onMarkAllAsPaid, building, allBuildings, search, handleSearch}) => {
   const thisMonth = moment(month, 'YYYYMM');
-  const thisCleaner = cleaner ? Collections.Cleaners.findOne(cleaner._id) || {} : {};
-  const thisBuilding = building ? Collections.Buildings.findOne(building._id) || {} : {};
+  const thisCleaner = cleaner;
+  const thisBuilding = building;
 
 
   let currentDay, daySum = {duration: 0, price: 0};
@@ -66,7 +66,7 @@ const MonthlyReport = ({month, jobs, cleaner, allCleaners, allMonths, Collection
         <li key=''><a href={`/monthly-report/-/${thisMonth.format('YYYYMM')}/${thisBuilding._id || '-'}`}>~ Všetky upratovačky ~</a></li>
        {allCleaners
          .map(item => {
-          return <li className={item.active ? '' : 'bg-danger'} key={item._id}><a href={`/monthly-report/${item._id}/${thisMonth.format('YYYYMM')}/${thisBuilding._id || '-'}`}>{item.name}</a></li>
+          return <li key={item._id} className={item.active ? '' : 'bg-danger'}><a href={`/monthly-report/${item._id}/${thisMonth.format('YYYYMM')}/${thisBuilding._id || '-'}`}>{item.name}</a></li>
         })}
       </ul>
     </div>
@@ -89,7 +89,7 @@ const MonthlyReport = ({month, jobs, cleaner, allCleaners, allMonths, Collection
       <ul className="dropdown-menu dropdown-menu-right">
         <li key=''><a href={`/monthly-report/${thisCleaner._id || '-'}/${thisMonth.format('YYYYMM')}/-`}>~ Všetky objekty ~</a></li>
         {allBuildings.map(item => {
-          return <li key={item._id}><a href={`/monthly-report/${thisCleaner._id || '-'}/${thisMonth.format('YYYYMM')}/${item._id}`}>{item.name}</a></li>
+          return <li key={item._id} className={item.active ? '' : 'bg-danger'}><a href={`/monthly-report/${thisCleaner._id || '-'}/${thisMonth.format('YYYYMM')}/${item._id}`}>{item.name}</a></li>
         })}
       </ul>
     </div>
