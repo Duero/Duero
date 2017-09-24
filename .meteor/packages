@@ -18,8 +18,6 @@ ecmascript@0.8.2              # Enable ECMAScript2015+ syntax in app code
 kadira:flow-router
 kadira:dochead
 reactive-dict@1.1.9
-aldeed:simple-schema
-aldeed:collection2
 dburles:collection-helpers
 rzymek:moment-locale-sk
 percolate:synced-cron
@@ -39,3 +37,4 @@ standard-minifier-css
 standard-minifier-js
 shell-server
 dynamic-import
+aldeed:collection2-core@2.0.0
