@@ -3,7 +3,7 @@ import React from 'react';
 import Navigation from '/client/modules/core/components/navigation.jsx';
 
 const Layout = ({content = () => null }) => (
-  <div className="container-fluid">
+  <div id="main-content" className="container-fluid">
   	<Navigation />
     {content()}
   </div>
