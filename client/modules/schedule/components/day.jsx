@@ -22,7 +22,7 @@ const Day = ({cleaners, viewAll, date, isToday, isOverdue, onButtonClick, onReas
           <dd>
             {cleanerJobs.map(job => {
               if(job.isOvertime()) {
-                return <div key={job._id} className="btn-group btn-group-lg">
+                return <div key={job._id} className="btn-group btn-group-lg m-r-sm m-b-sm">
                   <button className="btn btn-success" type="button">{job.title()}</button>
                   <button className="btn btn-success" type="button" onClick={() => onCancelOvertime(cleaner, date.toDate())}><i className="fa fa-times" /></button>
                 </div>
@@ -34,13 +34,13 @@ const Day = ({cleaners, viewAll, date, isToday, isOverdue, onButtonClick, onReas
                 });
                 let dropdownClass = buttonClass + ' dropdown-toggle';
 
-                return <div key={job._id} className="btn-group btn-group-lg">
+                return <div key={job._id} className="btn-group btn-group-lg m-r-sm m-b-sm">
                   <button type="button" className={buttonClass} onClick={() => onButtonClick(job)}>{job.title()} {job.description ? <small>(+{job.duration} min)</small> : ''}</button>
                   <button type="button" className={dropdownClass} data-toggle="dropdown">
                     <span className="caret" />
                   </button>
                   <ul className="dropdown-menu dropdown-menu-right">
-{job.isExtra() ? '' : cleaners.map(item => {
+                    {job.isExtra() ? '' : cleaners.map(item => {
                       if(item._id == cleaner._id) {
                         return null;
                       }

@@ -1,7 +1,8 @@
 import React from 'react';
 
 
-const MonthlyReport = ({month, jobs, cleaner, allCleaners, allMonths, Collections, totals, onMarkAllAsPaid, building, allBuildings, search, handleSearch}) => {
+const MonthlyReport = ({urlPrefix = 'monthly-report', month, jobs, cleaner, allCleaners, allMonths, Collections, totals, onMarkAllAsPaid, building, allBuildings, search, handleSearch}) => {
+  const isAdmin = urlPrefix === 'monthly-report';
   const thisMonth = moment(month, 'YYYYMM');
   const thisCleaner = cleaner;
   const thisBuilding = building;
@@ -63,10 +64,10 @@ const MonthlyReport = ({month, jobs, cleaner, allCleaners, allMonths, Collection
         {thisCleaner.name  || 'Všetky upratovačky'} <span className="caret" />
       </button>
       <ul className="dropdown-menu dropdown-menu-right">
-        <li key=''><a href={`/monthly-report/-/${thisMonth.format('YYYYMM')}/${thisBuilding._id || '-'}`}>~ Všetky upratovačky ~</a></li>
+        <li key=''><a href={`/${urlPrefix}/-/${thisMonth.format('YYYYMM')}/${thisBuilding._id || '-'}`}>~ Všetky upratovačky ~</a></li>
        {allCleaners
          .map(item => {
-          return <li key={item._id} className={item.active ? '' : 'bg-danger'}><a href={`/monthly-report/${item._id}/${thisMonth.format('YYYYMM')}/${thisBuilding._id || '-'}`}>{item.name}</a></li>
+          return <li key={item._id} className={item.active ? '' : 'bg-danger'}><a href={`/${urlPrefix}/${item._id}/${thisMonth.format('YYYYMM')}/${thisBuilding._id || '-'}`}>{item.name}</a></li>
         })}
       </ul>
     </div>
@@ -77,7 +78,7 @@ const MonthlyReport = ({month, jobs, cleaner, allCleaners, allMonths, Collection
       </button>
       <ul className="dropdown-menu dropdown-menu-right">
         {allMonths.map(item => {
-          return <li key={item.value}><a href={`/monthly-report/${thisCleaner._id || '-'}/${item.value}/${thisBuilding._id || '-'}`}>{item.name}</a></li>
+          return <li key={item.value}><a href={`/${urlPrefix}/${thisCleaner._id || '-'}/${item.value}/${thisBuilding._id || '-'}`}>{item.name}</a></li>
         })}
       </ul>
     </div>
@@ -87,9 +88,9 @@ const MonthlyReport = ({month, jobs, cleaner, allCleaners, allMonths, Collection
         {thisBuilding.name || 'Všetky objekty'} <span className="caret" />
       </button>
       <ul className="dropdown-menu dropdown-menu-right">
-        <li key=''><a href={`/monthly-report/${thisCleaner._id || '-'}/${thisMonth.format('YYYYMM')}/-`}>~ Všetky objekty ~</a></li>
+        <li key=''><a href={`/${urlPrefix}/${thisCleaner._id || '-'}/${thisMonth.format('YYYYMM')}/-`}>~ Všetky objekty ~</a></li>
         {allBuildings.map(item => {
-          return <li key={item._id} className={item.active ? '' : 'bg-danger'}><a href={`/monthly-report/${thisCleaner._id || '-'}/${thisMonth.format('YYYYMM')}/${item._id}`}>{item.name}</a></li>
+          return <li key={item._id} className={item.active ? '' : 'bg-danger'}><a href={`/${urlPrefix}/${thisCleaner._id || '-'}/${thisMonth.format('YYYYMM')}/${item._id}`}>{item.name}</a></li>
         })}
       </ul>
     </div>
@@ -132,7 +133,7 @@ const MonthlyReport = ({month, jobs, cleaner, allCleaners, allMonths, Collection
 
     </table>
 
-    <button type="button" className="btn btn-success btn-lg pull-right" onClick={() => onMarkAllAsPaid(cleaner._id, month)}>Označiť ako uhradené: {totals.unpaid} EUR</button>
+    {isAdmin && <button type="button" className="btn btn-success btn-lg pull-right" onClick={() => onMarkAllAsPaid(cleaner._id, month)}>Označiť ako uhradené: {totals.unpaid} EUR</button>}
 
   </div>
 };

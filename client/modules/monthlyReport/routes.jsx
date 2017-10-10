@@ -11,10 +11,10 @@ export default function (injectDeps) {
   FlowRouter.route('/monthly-report/:cleanerId?/:month?/:buildingId?/:search?', {
     name: 'monthlyReport',
     action({cleanerId, month, buildingId, search}) {
-      if (cleanerId == '-') cleanerId = null;
-      if (month == '-') month = null;
-      if (buildingId == '-') buildingId = null;
-      if (search == '-') search = null;
+      if (cleanerId === '-') cleanerId = null;
+      if (month === '-') month = null;
+      if (buildingId === '-') buildingId = null;
+      if (search === '-') search = null;
 
       mount(MainLayoutCtx, {
         content: () => (<MonthlyReport cleanerId={cleanerId} month={month} buildingId={buildingId} search={search}/>)
