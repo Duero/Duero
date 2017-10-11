@@ -31,7 +31,8 @@ const joinNames = list => {
   return bucket;
 };
 
-export const composer = ({context, cleanerId, month, buildingId, search}, onData) => {
+export const composer = ({context, urlPrefix, cleanerId, month, buildingId, search}, onData) => {
+  const isAdmin = !urlPrefix;
   cleanerId = cleanerId ? fromUrl(cleanerId) : null;
   buildingId = buildingId ? fromUrl(buildingId) : null;
   const {Collections} = context();
@@ -67,6 +68,8 @@ export const composer = ({context, cleanerId, month, buildingId, search}, onData
     const monthEnd = moment(month, 'YYYYMM').endOf('month').toDate();
 
     const jobsSelector = {date: {$gte: monthStart, $lte: monthEnd}};
+    if(!isAdmin) jobsSelector.building_id = {$in: buildings.map(v => v._id)};
+    if(!isAdmin) jobsSelector.cleaner_id = {$in: cleaners.map(v => v._id)};
 
     if (cleanerId) {
       if(endsWith(cleanerId, '/')) {
@@ -83,7 +86,6 @@ export const composer = ({context, cleanerId, month, buildingId, search}, onData
 
     if (search) jobsSelector.description = {$regex : `.*${search}.*`};
 
-    console.log(jobsSelector)
     const jobs = Collections.Jobs.find(jobsSelector, {sort: {date: 1}}).fetch();
 
     const cleaner = endsWith(cleanerId, '/') ? fakeEntity(cleanerId) : Collections.Cleaners.findOne(cleanerId) || {};
@@ -99,7 +101,7 @@ export const composer = ({context, cleanerId, month, buildingId, search}, onData
       totals.duration += item.duration;
       const thisPrice = item.duration / 60 * item.salary
       totals.price += thisPrice;
-      if (item.paid != true) totals.unpaid += thisPrice;
+      if (item.paid !== true) totals.unpaid += thisPrice;
     });
 
     totals.price = roundTo(totals.price, 2);

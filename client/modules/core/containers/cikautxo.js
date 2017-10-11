@@ -6,9 +6,7 @@ export const composer = ({context}, onData) => {
   const {Meteor, Collections, LocalState} = context();
 
   if(Meteor.subscribe('cikautxo.init').ready()) {
-    onData(null, {
-      jobs: Collections.Jobs.find().fetch()
-    });
+    onData(null, {});
   }
 };
 

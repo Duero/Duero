@@ -44,7 +44,7 @@ Migrations.add({
   name: 'Reactivate hidden buildings',
   up: function() {
     Buildings.find({assigned: true}).map(b => {
-      if(Schedules.find({building_id: b._id}).count() == 0) {
+      if(Schedules.find({building_id: b._id}).count() === 0) {
         Buildings.update(b._id, {$set: {assigned: false}});
       }
     });
