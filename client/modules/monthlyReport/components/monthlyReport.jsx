@@ -38,10 +38,11 @@ const MonthlyReport = ({urlPrefix = 'monthly-report', month, jobs, cleaner, allC
         daySum = {duration: 0, price: 0}
       }
 
+      const cleaner = item.cleaner() || {name: '??'};
       days.push(
         <tr key={item._id}>
           <td>{date}</td>
-          <td>{item.cleaner().name}</td>
+          <td>{cleaner.name}</td>
           <td>{item.title()}</td>
           <td>{item.bigCleaning ? <span className="small">Velké upratovanie</span> : null} {item.description}</td>
           <td className="text-right">{item.salary || '?'} EUR</td>
