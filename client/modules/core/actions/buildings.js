@@ -13,14 +13,8 @@ export default {
   },
 
   setActive({Collections, Meteor}, id, active = true) {
-    Collections.Buildings.update(id, {$set: {active}});
-    if(!active) {
-      Meteor.call('schedule.cleanup', {building_id: id}, (error) => {
-        if(error) console.error(error);
-      });
-      Meteor.call('scheduleEditor.unassign', {buildingId: id}, (error) => {
-        if(error) console.error(error);
-      });
-    }
+    Meteor.call('buildings.setActive', id, active, (error) => {
+      if(error) console.error(error);
+    });
   }
 };

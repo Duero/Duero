@@ -21,7 +21,6 @@ reactive-dict@1.1.9
 dburles:collection-helpers
 rzymek:moment-locale-sk
 percolate:synced-cron
-ongoworks:security
 percolate:migrations
 cwaring:modernizr
 # achtan:dr-seeder
@@ -38,3 +37,4 @@ standard-minifier-js
 shell-server
 dynamic-import
 aldeed:collection2-core@2.0.0
+ongoworks:security

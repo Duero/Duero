@@ -18,5 +18,16 @@ Meteor.methods({
       data.createdAt = new Date();
       Buildings.insert(data);
     }
+  },
+
+  'buildings.setActive'(id, active) {
+    check(id, Match.OneOf(String, null));
+    active = !!active;
+
+    Buildings.update(id, {$set: {active}});
+    if(!active) {
+      Meteor.call('schedule.cleanup', {building_id: id});
+      Meteor.call('scheduleEditor.unassign', {buildingId: id});
+    }
   }
 });
